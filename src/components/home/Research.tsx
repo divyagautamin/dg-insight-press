@@ -24,6 +24,7 @@ import SmartLink from "@/components/ui/SmartLink";
 import { LINKS, RESEARCH_PAGES_ACTIVE } from "@/lib/links";
 import { researchPapers } from "@/data/content";
 import { softGlow } from "@/lib/glow";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
 
 const paperLink = (i: number) => ({ href: `/research/${researchPapers[i].slug}`, active: RESEARCH_PAGES_ACTIVE });
 
@@ -328,6 +329,8 @@ export default function Research() {
           {/* Subtle Star Particles (CSS only) */}
           <div className="absolute left-[10%] top-[20%] w-1 h-1 bg-[#D4AF37] rounded-full shadow-[0_0_10px_rgba(212,175,55,1)]" />
           <div className="absolute right-[20%] bottom-[30%] w-1 h-1 bg-[#D4AF37] rounded-full shadow-[0_0_10px_rgba(212,175,55,1)]" />
+          <GoldDust count={14} seed={5} rise={36} />
+          <SparkleField stars={[[22, 8, 10, 0.5], [74, 44, 8, 2.1], [18, 70, 11, 1.3], [80, 94, 9, 2.9]]} />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
             {/* Emblem / Custom DG Logo */}

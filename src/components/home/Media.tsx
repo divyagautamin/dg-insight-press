@@ -323,11 +323,11 @@ export default function Media() {
                   ref={emailRef}
                   type="email" 
                   placeholder="Enter your email address" 
-                  aria-label="Email address" className="w-full sm:w-[260px] md:w-[300px] lg:w-[260px] bg-[#050403]/50 border border-[#D4AF37]/30 rounded-lg px-4 py-3 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]/40 transition-all duration-300 placeholder:text-[#666] shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
+                  aria-label="Email address" className="w-full sm:w-[260px] md:w-[300px] lg:w-[260px] bg-[#120f0a]/90 border border-[#D4AF37]/40 rounded-lg px-4 py-3 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]/40 transition-all duration-300 placeholder:text-[#9a9486] shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
                 />
-                <p className="text-[#666] text-[9px] mt-2 ml-1">No spam. Only meaningful updates.</p>
+                <p className="text-[#8E8E8E] text-[10px] mt-2 ml-1">No spam. Only meaningful updates.</p>
               </div>
-              <button type="button" onClick={() => subscribe(emailRef.current?.value)} className="w-full sm:w-auto border border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black font-bold tracking-widest uppercase text-[12px] px-8 py-3 rounded-lg transition-all duration-300">
+              <button type="button" onClick={() => subscribe(emailRef.current?.value)} className="w-full sm:w-auto border border-[#D4AF37] bg-[#D4AF37] text-black shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-[#f0cf67] hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] font-bold tracking-widest uppercase text-[12px] px-8 py-3 rounded-lg transition-all duration-300">
                 SUBSCRIBE
               </button>
             </div>

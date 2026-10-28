@@ -294,15 +294,15 @@ export default function Insights() {
                   type="email"
                   aria-label="Your email address"
                   placeholder="Your email address"
-                  className="w-full rounded-lg border border-[#D4AF37]/20 bg-black/50 px-4 py-3 text-[16px] md:text-[13px] text-white outline-none focus:border-[#D4AF37]/60 transition-colors placeholder:text-[#666]"
+                  className="w-full rounded-lg border border-[#D4AF37]/40 bg-[#120f0a]/90 px-4 py-3 text-[16px] md:text-[13px] text-white outline-none focus:border-[#D4AF37] transition-colors placeholder:text-[#9a9486]"
                 />
                 
                 {/* SUBSCRIBE BUTTON: Pill-shaped + The Lift + The Glow */}
-                <button type="button" onClick={() => subscribe(emailRef.current?.value)} className="w-full rounded-full border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-[#D4AF37] hover:bg-transparent py-3.5 text-[13px] font-bold text-black hover:text-white hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_20px_rgba(212,175,55,0.25)] transition-all duration-500">
+                <button type="button" onClick={() => subscribe(emailRef.current?.value)} className="w-full rounded-full border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-[#D4AF37] hover:bg-[#f0cf67] py-3.5 text-[13px] font-bold text-black shadow-[0_0_20px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_20px_rgba(212,175,55,0.25)] transition-all duration-500">
                   Subscribe
                 </button>
                 
-                <p className="text-[#666] text-[10px] text-center mt-2 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]">No spam. Only thoughtful ideas.</p>
+                <p className="text-[#8E8E8E] text-[10px] text-center mt-2 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]">No spam. Only thoughtful ideas.</p>
               </div>
             </motion.div>
 

@@ -27,7 +27,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import reviewBook from "@/assets/media/review_book.webp";
-import stamp from "@/assets/media/stamp.webp";
+import stamp from "@/assets/media/stamp_seal.webp";
+import SunGlow from "@/components/ui/SunGlow";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================
 // CUSTOM PREMIUM VERIFIED SEAL SVG
@@ -296,8 +299,11 @@ export default function Reviews() {
           viewport={{ once: true, amount: 0.2 }}
           className="relative z-20 rounded-2xl border border-[#D4AF37]/40 bg-transparent shadow-[inset_0_1px_1px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/70 hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-500 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[40px]"
         >
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#000000]/95 via-[#110e0a]/80 to-[#000000]/95 backdrop-blur-xl overflow-hidden pointer-events-none z-0">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#d4af3710,transparent_70%)]" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#000000]/95 via-[#110e0a]/90 to-[#000000]/95 overflow-hidden pointer-events-none z-0">
+             <div className="absolute inset-0" style={{ background: softGlow(0.07, "ellipse 60% 80% at center") }} />
+             {/* Floating golden dust + twinkling stars */}
+             <GoldDust count={16} seed={31} rise={40} />
+             <SparkleField stars={[[18, 30, 11, 0.3], [78, 36, 8, 1.7], [22, 64, 9, 2.6], [70, 72, 12, 1.1], [40, 92, 8, 3.2]]} />
           </div>
 
           {/* ULTRA-COMPACT GRID: Reduced padding and minimal gaps */}
@@ -306,7 +312,8 @@ export default function Reviews() {
             {/* Left: Book Image (Forced Massive Size Architecture) */}
             <div className="flex justify-center order-2 lg:order-1 -my-4 lg:-my-24 pointer-events-none shrink-0">
               <div className="relative group shrink-0">
-                <div className="absolute inset-0 bg-[#D4AF37]/10 blur-3xl rounded-full transform scale-90 transition-transform duration-500" />
+                {/* Sun-like aura behind the book */}
+                <SunGlow className="h-[150%] w-[150%]" intensity={0.45} />
                 <Image
                   src={reviewBook}
                   alt="Vocab Decode Signed Edition"
@@ -341,7 +348,7 @@ export default function Reviews() {
                 <span className="w-6 md:w-8 h-[1px] bg-[#D4AF37]/40" />
               </div>
 
-              <p className="text-[#A0A0A0] text-[11px] md:text-[12px] leading-relaxed max-w-sm mx-auto mb-4">
+              <p className="text-[#B9B5AC] text-[12px] md:text-[12.5px] leading-relaxed max-w-sm mx-auto mb-4">
                 A limited number of first-edition copies are personally signed by Divya Gautam.
               </p>
 
@@ -362,10 +369,9 @@ export default function Reviews() {
                 <Image
                   src={stamp}
                   alt="Signed Edition Stamp"
-                  width={200}
-                  height={200}
-                  priority
-                  className="w-[110px] sm:w-[130px] md:w-[150px] lg:w-[200px] h-auto object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.8)] pointer-events-auto"
+                  width={400}
+                  height={441}
+                  className="w-[130px] sm:w-[150px] md:w-[170px] lg:w-[200px] h-auto object-contain pointer-events-auto"
                 />
               </div>
             </div>

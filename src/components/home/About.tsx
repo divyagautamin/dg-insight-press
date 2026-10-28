@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { LINKS } from "@/lib/links";
 import { softGlow } from "@/lib/glow";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
 
 // ==========================================
 // BACKGROUND IMAGE IMPORTS (Update paths to match your actual directory structure)
@@ -242,6 +243,8 @@ export default function About() {
         >
           {/* Bulletproof CTA Glow */}
           <div className="absolute -left-10 -top-10 w-[300px] h-[300px] pointer-events-none z-0" style={{ background: softGlow(0.24) }} />
+          <GoldDust count={10} seed={17} rise={30} />
+          <SparkleField stars={[[24, 46, 10, 0.8], [72, 62, 8, 2.4], [30, 80, 9, 1.6]]} />
 
           <div className="relative z-10">
             <span className="text-[#D4AF37] uppercase font-mono tracking-[3px] text-[10px] md:text-[11px] font-semibold">

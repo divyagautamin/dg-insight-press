@@ -248,8 +248,8 @@ export default function PremiumFooter() {
                 <p className="mb-3 lg:mb-4 text-[10px] lg:text-[11px] leading-relaxed text-[#8E8E8E]">Monthly research, writing notes & updates.</p>
               </div>
               
-              <div className="relative z-10 flex h-[34px] lg:h-[38px] w-full items-center overflow-hidden rounded-[4px] border border-[#D4AF37]/20 bg-[#000000] transition-all duration-300 focus-within:border-[#D4AF37]/80 focus-within:ring-1 focus-within:ring-[#D4AF37]/30">
-                <input ref={emailRef} type="email" aria-label="Email for newsletter" placeholder="Enter your email..." className="h-full w-full bg-transparent px-3 text-[16px] md:text-[11px] lg:text-[12px] text-[#F5F2EB] placeholder:text-[#555555] outline-none transition-colors" />
+              <div className="relative z-10 flex h-[34px] lg:h-[38px] w-full items-center overflow-hidden rounded-[4px] border border-[#D4AF37]/40 bg-[#120f0a] transition-all duration-300 focus-within:border-[#D4AF37]/80 focus-within:ring-1 focus-within:ring-[#D4AF37]/30">
+                <input ref={emailRef} type="email" aria-label="Email for newsletter" placeholder="Enter your email..." className="h-full w-full bg-transparent px-3 text-[16px] md:text-[11px] lg:text-[12px] text-[#F5F2EB] placeholder:text-[#9a9486] outline-none transition-colors" />
                 <button type="button" aria-label="Subscribe" onClick={() => subscribe(emailRef.current?.value)} className="flex h-full w-[42px] lg:w-[46px] items-center justify-center bg-[#D4AF37] text-black transition-all duration-300 hover:bg-[#b39129] hover:brightness-110 active:scale-95">
                   <Send className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
                 </button>

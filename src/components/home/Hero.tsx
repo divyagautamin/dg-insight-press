@@ -7,6 +7,7 @@ import Link from "next/link";
 import SmartLink from "@/components/ui/SmartLink";
 import { LINKS } from "@/lib/links";
 import SunGlow from "@/components/ui/SunGlow";
+import { Sparkle } from "@/components/ui/Twinkle";
 import { softGlow } from "@/lib/glow";
 
 // ==========================================
@@ -32,26 +33,6 @@ import bookCollection from "@/assets/media/support_book.webp";
    Desktop (1024px+): same layout as before
    Knobs: base = mobile, md: = tablet, lg: = desktop
 ========================================================== */
-
-// Small 4-point twinkling star
-function Sparkle({ className = "", size = 10, delay = 0 }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width={size}
-      height={size}
-      aria-hidden="true"
-      className={`absolute pointer-events-none opacity-0 animate-[dg-twinkle_3.5s_ease-in-out_infinite] ${className}`}
-      style={{ animationDelay: `${delay}s` }}
-    >
-      <path
-        d="M12 0 C12.8 7 17 11.2 24 12 C17 12.8 12.8 17 12 24 C11.2 17 7 12.8 0 12 C7 11.2 11.2 7 12 0Z"
-        fill="#F5D77A"
-        style={{ filter: "drop-shadow(0 0 4px rgba(212,175,55,0.9))" }}
-      />
-    </svg>
-  );
-}
 
 // Golden dust particles, animated by CSS on the GPU (smooth, no lag).
 // Positions are generated once, so the page stays fast and stable.
@@ -298,7 +279,7 @@ export default function Hero() {
             {/* DG Emblem Integration (Pure Core Graphic) */}
             <div className="relative shrink-0 flex justify-center items-center h-[130px] w-[130px] md:h-[180px] md:w-[180px] lg:h-[300px] lg:w-[300px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px]">
               {/* Sun-like golden aura (soft halo + slowly turning light rays) */}
-              <SunGlow className="h-[260%] w-[260%] z-0" />
+              <SunGlow className="h-[230%] w-[230%] z-0" intensity={0.5} />
               
               <div className="relative h-28 w-28 md:h-40 md:w-40 lg:h-120 lg:w-120 flex items-center justify-center">
                 <img 
@@ -308,10 +289,13 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Mobile/Tablet: sparkles around the emblem */}
+              {/* Twinkling stars around the emblem */}
               {isMounted && (
-                <div className="absolute inset-0 pointer-events-none lg:hidden">
-                  <Sparkle className="-top-1 right-1" size={10} delay={0.4} />
+                <div className="absolute inset-0 pointer-events-none">
+                  <Sparkle className="top-[2%] right-[6%]" size={13} delay={0.4} />
+                  <Sparkle className="bottom-[14%] left-[2%]" size={10} delay={1.9} />
+                  <Sparkle className="top-[22%] -left-[8%] hidden md:block" size={8} delay={3.1} />
+                  <Sparkle className="bottom-[4%] right-[14%] hidden md:block" size={9} delay={2.6} />
                 </div>
               )}
             </div>

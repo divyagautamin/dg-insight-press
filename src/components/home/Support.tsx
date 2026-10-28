@@ -23,6 +23,7 @@ import supportTablet from "@/assets/tablet/support_top_tablet.webp";
 import supportMobile from "@/assets/mobile/support_top_mobile.webp";
 import supportBook from "@/assets/media/support_book.webp"; 
 import { CONTACT, SOCIALS } from "@/lib/links";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
 
 // ==========================================
 // CUSTOM SVG ICONS FOR SOCIAL MEDIA (Bypasses Lucide Brand Restrictions)
@@ -454,14 +455,14 @@ export default function Support() {
                   aria-label="Your Name"
                   value={form.name} onChange={update("name")}
                   placeholder="Your Name" 
-                  className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                  className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
                 />
                 <input 
                   type="email" 
                   aria-label="Your Email"
                   value={form.email} onChange={update("email")}
                   placeholder="Your Email" 
-                  className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                  className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
                 />
               </div>
               <input 
@@ -469,20 +470,20 @@ export default function Support() {
                 aria-label="Subject"
                 value={form.subject} onChange={update("subject")}
                 placeholder="Subject (Academic, Media, Bulk Order, etc.)" 
-                className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
               />
               <textarea 
                 rows={6} 
                 aria-label="Your Message"
                 value={form.message} onChange={update("message")}
                 placeholder="Your Message..." 
-                className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666] resize-none"
+                className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486] resize-none"
               />
               
               {formNote && <p className="text-[12px] text-[#D4AF37]" role="status">{formNote}</p>}
 
               <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
-                <button type="submit" className="relative w-full sm:w-auto overflow-hidden bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] hover:from-[#c29f2d] hover:to-[#D4AF37] px-8 py-3.5 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-1 group">
+                <button type="submit" className="relative w-full sm:w-auto overflow-hidden bg-[#D4AF37] bg-[linear-gradient(90deg,#D4AF37_0%,#F3E5AB_100%)] hover:bg-[linear-gradient(90deg,#c29f2d_0%,#D4AF37_100%)] text-black px-8 py-3.5 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-1 group">
                   <span className="relative z-20 flex items-center justify-center gap-2 w-full h-full !text-black font-bold tracking-wide text-[13px]">
                     Send Message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -598,6 +599,8 @@ export default function Support() {
           className="w-full rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[260px]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#110e0a] to-[#050403] z-0" />
+          <GoldDust count={12} seed={41} rise={34} />
+          <SparkleField stars={[[24, 10, 10, 0.6], [70, 88, 11, 1.9], [20, 82, 8, 3.0]]} />
           
           <div className="relative z-10 px-6 py-10 md:px-12 md:py-14 flex flex-col items-center justify-center text-center min-h-[160px]">
             <div className="flex gap-4 items-start">
