@@ -2,7 +2,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { subscribe } from "@/lib/subscribe";
 import { 
   Feather, 
   Landmark, 
@@ -32,9 +33,15 @@ import penInsight from "@/assets/media/pen_insight.webp";
 import parliamentInsight from "@/assets/media/parliament_insight.webp";
 import compassInsight from "@/assets/media/compass_insight.webp";
 import quoteImage from "@/assets/media/quote.webp";
+import SmartLink from "@/components/ui/SmartLink";
+import { ESSAY_PAGES_ACTIVE } from "@/lib/links";
+import { essays } from "@/data/content";
+
+const essayLink = (i) => ({ href: `/insights/${essays[i].slug}`, active: ESSAY_PAGES_ACTIVE });
 
 export default function Insights() {
   const [mounted, setMounted] = useState(false);
+  const emailRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -43,7 +50,7 @@ export default function Insights() {
   return (
     <section
       id="insights"
-      className="relative w-full bg-[#050403] overflow-hidden pt-28 pb-32 font-sans"
+      className="relative w-full bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-28 pb-20 md:pb-24 lg:pb-32 font-sans"
     >
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND
@@ -64,7 +71,7 @@ export default function Insights() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/50 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-[1450px] mx-auto px-6 lg:px-10">
+      <div className="relative z-10 max-w-[1450px] mx-auto px-5 md:px-10 lg:px-10">
         
         {/* ==========================================
             HERO TEXT SECTION
@@ -84,21 +91,21 @@ export default function Insights() {
             </div>
 
             <h2
-              className="text-[#F5F2EB] leading-[1.1] text-[44px] md:text-[64px] lg:text-[76px] font-normal translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
+              className="text-[#F5F2EB] leading-[1.1] text-[40px] md:text-[64px] lg:text-[76px] font-normal translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
               style={{ fontFamily: "var(--font-playfair), serif" }}
             >
               Ideas that <br />
               <span className="italic text-[#D4AF37]">Shape Institutions</span>
             </h2>
 
-            <p className="mt-8 text-[#A0A0A0] leading-relaxed max-w-xl text-[15px] md:text-[16px] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[40px]">
+            <p className="mt-6 md:mt-8 text-[#A0A0A0] max-lg:text-[#C4C0B7] leading-relaxed max-w-xl text-[15px] md:text-[16px] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[40px]">
               A curated archive of scholarly reflections on language, public policy, 
               and the administrative intellect—designed for those who govern and those who aspire.
             </p>
           </motion.div>
 
           {/* 4 Feature Icons with Subtle Hover */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[20px]">
+          <div className="mt-10 md:mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[20px]">
             {[
               { icon: Feather, title: "Thoughtful", sub: "Analysis" },
               { icon: Landmark, title: "Evidence-Based", sub: "Perspectives" },
@@ -125,7 +132,7 @@ export default function Insights() {
             Tablet : md:translate-y-[30px]
             Desktop: lg:translate-y-[10px] lg:translate-x-[0px]
         */}
-        <div className="grid lg:grid-cols-[2fr_1fr] gap-8 translate-x-[0px] translate-y-[20px] md:translate-x-[0px] md:translate-y-[30px] lg:translate-x-[0px] lg:translate-y-[10px]">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-8 mt-14 md:mt-16 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[10px]">
 
 {/* ================= LEFT: FEATURED ESSAY ================= */}
 <div className="flex flex-col">
@@ -148,7 +155,7 @@ export default function Insights() {
 
     <div className="relative z-10 grid md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-6 md:gap-8 items-center h-full">
       {/* IMAGE: Reduced min-h to make the overall box shorter */}
-      <div className="overflow-hidden rounded-xl h-full min-h-[200px]">
+      <div className="overflow-hidden rounded-xl h-full min-h-[200px] max-md:aspect-[16/10]">
         <img
           src={zoomInsight.src}
           alt="Language as Architecture"
@@ -163,7 +170,7 @@ export default function Insights() {
         </span>
         
         <h2
-          className="pt-4 text-[#F5F2EB] text-[28px] md:text-[34px] leading-[1.15]"
+          className="pt-4 text-[#F5F2EB] text-[26px] md:text-[34px] leading-[1.15]"
           style={{ fontFamily: "var(--font-playfair), serif" }}
         >
           Language as the Architecture of Governance
@@ -184,10 +191,10 @@ export default function Insights() {
         
         {/* PREMIUM PILL BUTTON */}
         <div className="pt-8 shrink-0">
-          <button className="group/btn relative flex items-center gap-2 border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-black/40 text-[#D4AF37] hover:text-white px-5 py-2.5 rounded-full text-[12px] font-medium uppercase tracking-[0.15em] transition-all duration-500 hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_15px_rgba(212,175,55,0.1)] isolate">
+          <SmartLink link={essayLink(0)} className="group/btn relative flex w-fit items-center gap-2 border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-black/40 text-[#D4AF37] hover:text-white px-5 py-2.5 rounded-full text-[12px] font-medium uppercase tracking-[0.15em] transition-all duration-500 hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_15px_rgba(212,175,55,0.1)] isolate">
             <span className="relative z-10">Read Full Essay</span>
             <ChevronRight className="w-4 h-4 text-[#D4AF37] stroke-[2] transition-all duration-500 group-hover/btn:text-white group-hover/btn:translate-x-1" />
-          </button>
+          </SmartLink>
         </div>
       </div>
     </div>
@@ -195,7 +202,7 @@ export default function Insights() {
 </div>
 
           {/* ================= RIGHT: SIDEBAR (Categories, Trending, Subscribe) ================= */}
-          <div className="flex flex-col gap-8 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[80px]">
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-col gap-6 lg:gap-8 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[80px]">
             
             {/* 1. CATEGORIES (With slow duration-500 hover glow) */}
             <motion.div
@@ -264,7 +271,7 @@ export default function Insights() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="relative bg-gradient-to-br from-[#15110a] to-[#050403] border border-[#D4AF37]/30 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] rounded-2xl p-7 isolate [contain:paint] overflow-hidden transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
+              className="relative md:col-span-2 lg:col-span-1 bg-gradient-to-br from-[#15110a] to-[#050403] border border-[#D4AF37]/30 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] rounded-2xl p-7 isolate [contain:paint] overflow-hidden transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
             >
               {/* Inner Glow (Zero lag radial gradient) */}
               <div className="absolute right-0 bottom-0 w-32 h-32 pointer-events-none" style={{ background: 'radial-gradient(circle at bottom right, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%)' }} />
@@ -282,12 +289,15 @@ export default function Insights() {
               
               <div className="relative z-10 mt-6 space-y-3 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]">
                 <input
+                  ref={emailRef}
+                  type="email"
+                  aria-label="Your email address"
                   placeholder="Your email address"
-                  className="w-full rounded-lg border border-[#D4AF37]/20 bg-black/50 px-4 py-3 text-[13px] text-white outline-none focus:border-[#D4AF37]/60 transition-colors placeholder:text-[#666]"
+                  className="w-full rounded-lg border border-[#D4AF37]/20 bg-black/50 px-4 py-3 text-[16px] md:text-[13px] text-white outline-none focus:border-[#D4AF37]/60 transition-colors placeholder:text-[#666]"
                 />
                 
                 {/* SUBSCRIBE BUTTON: Pill-shaped + The Lift + The Glow */}
-                <button className="w-full rounded-full border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-[#D4AF37] hover:bg-transparent py-3.5 text-[13px] font-bold text-black hover:text-white hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_20px_rgba(212,175,55,0.25)] transition-all duration-500">
+                <button type="button" onClick={() => subscribe(emailRef.current?.value)} className="w-full rounded-full border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-[#D4AF37] hover:bg-transparent py-3.5 text-[13px] font-bold text-black hover:text-white hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_20px_rgba(212,175,55,0.25)] transition-all duration-500">
                   Subscribe
                 </button>
                 
@@ -312,7 +322,7 @@ export default function Insights() {
             - Change the 'lg:-translate-y-[320px]' value to move the block UP or DOWN on a laptop.
             - Change the 'lg:-translate-x-[20px]' value to adjust LEFT/RIGHT positioning.
         */}
-        <div className="relative z-30 w-full lg:w-[66%] translate-x-[0px] translate-y-[30px] md:translate-x-[0px] md:translate-y-[40px] lg:-translate-x-[20px] lg:-translate-y-[500px]">
+        <div className="relative z-30 w-full lg:w-[66%] mt-14 md:mt-16 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:-translate-x-[20px] lg:-translate-y-[500px]">
           
           {/* Header Title - Using padding (pb) instead of margin */}
           <div className="flex items-center gap-4 pb-6">
@@ -357,7 +367,7 @@ export default function Insights() {
                    IMAGE: 'aspect-square' locks the ratio to exactly 1:1. 
                    'object-cover' perfectly fits the image inside without compressing it.
                 */}
-                <div className="w-full aspect-square overflow-hidden">
+                <div className="w-full aspect-[16/10] md:aspect-square overflow-hidden">
                   <img
                     src={card.img}
                     alt={card.title}
@@ -368,12 +378,12 @@ export default function Insights() {
                 {/* CONTENT: Replaced all 'mb' with 'pb' (padding-bottom) for stability */}
                 <div className="p-4 flex flex-col flex-1">
                   <h3
-                    className="text-[17px] leading-tight text-[#F5F2EB] pb-2"
+                    className="text-[19px] lg:text-[17px] leading-tight text-[#F5F2EB] pb-2"
                     style={{ fontFamily: "var(--font-playfair), serif" }}
                   >
                     {card.title}
                   </h3>
-                  <p className="text-[#A0A0A0] text-[11px] leading-snug pb-4 flex-1">
+                  <p className="text-[#A0A0A0] text-[12px] lg:text-[11px] leading-snug pb-4 flex-1">
                     {card.desc}
                   </p>
                   
@@ -389,10 +399,10 @@ export default function Insights() {
                     </div>
                     
                     {/* PREMIUM PILL BUTTON */}
-                    <button className="group/pill flex items-center gap-1 border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-black/40 text-[#D4AF37] hover:text-white px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] transition-all duration-500 hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_15px_rgba(212,175,55,0.1)] isolate">
+                    <SmartLink link={essayLink(idx + 1)} className="group/pill flex items-center gap-1 border border-[#D4AF37]/80 hover:border-[#D4AF37] bg-black/40 text-[#D4AF37] hover:text-white px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] transition-all duration-500 hover:-translate-y-1 hover:shadow-[inset_0_1px_4px_rgba(212,175,55,0.3),0_0_15px_rgba(212,175,55,0.1)] isolate">
                       <span className="relative z-10">Read</span>
                       <ChevronRight className="relative z-10 w-3 h-3 stroke-[2.5] transition-all duration-500 group-hover/pill:translate-x-1" />
-                    </button>
+                    </SmartLink>
                   </div>
                 </div>
               </motion.div>
@@ -415,7 +425,7 @@ export default function Insights() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-full lg:w-[66%] rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 translate-x-[0px] translate-y-[50px] md:translate-x-[0px] md:translate-y-[60px] lg:translate-x-[0px] lg:-translate-y-[460px] lg:-mb-[460px]"
+          className="w-full lg:w-[66%] rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 mt-12 md:mt-14 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:-translate-y-[460px] lg:-mb-[460px]"
         >
           {/* 
              BACKGROUND IMAGE FIX: 
@@ -437,7 +447,7 @@ export default function Insights() {
           <div className="absolute inset-0 bg-black/10 z-0" />
           
           {/* CONTENT CONTAINER: Reduced py and min-h for a much slimmer (thinner) box */}
-          <div className="relative z-10 pl-3 pr-6 md:pl-4 md:pr-8 flex flex-col justify-center min-h-[160px] max-w-[95%] md:max-w-[75%] lg:max-w-[75%]">
+          <div className="relative z-10 pl-5 pr-6 py-6 lg:py-0 md:pl-6 lg:pl-4 md:pr-8 flex flex-col justify-center min-h-[160px] max-w-[95%] md:max-w-[75%] lg:max-w-[75%]">
             
             {/* Tagline - Reduced padding (pb-3) for compactness */}
             <div className="flex items-center gap-3 pb-3">

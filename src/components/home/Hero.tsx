@@ -3,6 +3,9 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import SmartLink from "@/components/ui/SmartLink";
+import { LINKS } from "@/lib/links";
 
 // ==========================================
 // IMAGE IMPORTS (From src/assets/...)
@@ -15,6 +18,8 @@ import heroBottomTablet from "@/assets/tablet/hero_bottom_tablet.webp";
 import heroTopMobile from "@/assets/mobile/hero_top_mobile.webp";
 import heroBottomMobile from "@/assets/mobile/hero_bottom_mobile.webp";
 import dgLogoGolden from "@/assets/icons/dg_logo_golden.webp";
+import bookCover from "@/assets/media/review_book.webp";
+import bookCollection from "@/assets/media/support_book.webp";
 
 /* ==========================================================
    RESPONSIVE LAYOUT
@@ -47,15 +52,6 @@ function Sparkle({ className = "", size = 10, delay = 0 }) {
   );
 }
 
-// Book spines for the "Book Collection" shelf
-const shelfBooks = [
-  { h: 58, w: 14 },
-  { h: 70, w: 16 },
-  { h: 84, w: 24, title: true },
-  { h: 66, w: 15 },
-  { h: 52, w: 13 },
-];
-
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -64,7 +60,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-20 md:pb-24 lg:pb-[150px] font-sans">
+    <section id="home" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-20 md:pb-24 lg:pb-[150px] font-sans">
       
       {/* ===========================
           PREMIUM BACKGROUND & EFFECTS
@@ -174,12 +170,12 @@ export default function Hero() {
 
           {/* Buttons Control — Mobile: both buttons equal width in one row */}
           <div className="mt-8 md:mt-9 lg:mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4 lg:gap-5 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[-20px] lg:translate-y-[-210px]">
-            <button className="text-center rounded-sm bg-[#D4AF37] px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-black transition-all hover:bg-[#f0cf67] hover:shadow-[0_0_35px_rgba(212,175,55,.45)] max-lg:shadow-[0_0_24px_rgba(212,175,55,.35)]">
+            <Link href={LINKS.about.href} className="text-center rounded-sm bg-[#D4AF37] px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-black transition-all hover:bg-[#f0cf67] hover:shadow-[0_0_35px_rgba(212,175,55,.45)] max-lg:shadow-[0_0_24px_rgba(212,175,55,.35)]">
               Explore Full Work
-            </button>
-            <button className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/40 max-lg:backdrop-blur-sm px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
+            </Link>
+            <SmartLink link={LINKS.profile} className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/40 max-lg:backdrop-blur-sm px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
               View Full Profile
-            </button>
+            </SmartLink>
           </div>
         </motion.div>
 
@@ -214,7 +210,7 @@ export default function Hero() {
               style={{ background: "linear-gradient(100deg, transparent 0%, rgba(255,230,160,0.12) 50%, transparent 100%)" }}
               initial={{ x: "-120%" }}
               animate={{ x: "360%" }}
-              transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: Infinity, repeatDelay: 9, ease: "easeInOut" }}
             />
 
             {/* Mobile fade: all four edges melt into the background */}
@@ -233,18 +229,12 @@ export default function Hero() {
               style={{ background: "linear-gradient(to top, #050403 0%, transparent 35%), linear-gradient(to bottom, #050403 0%, transparent 35%), linear-gradient(to right, #050403 0%, transparent 45%)" }}
             />
 
-            {/* Mobile/Tablet: golden corner frame */}
-            <div className="absolute top-5 left-5 h-9 w-9 border-t border-l border-[#D4AF37]/70 z-20 pointer-events-none lg:hidden" />
-            <div className="absolute top-5 right-5 h-9 w-9 border-t border-r border-[#D4AF37]/70 z-20 pointer-events-none lg:hidden" />
 
             {/* Mobile/Tablet: twinkling sparkles */}
             {isMounted && (
               <div className="absolute inset-0 z-20 pointer-events-none lg:hidden">
-                <Sparkle className="top-[14%] left-[14%]" size={12} delay={0} />
-                <Sparkle className="top-[22%] right-[16%]" size={9} delay={1.2} />
-                <Sparkle className="top-[44%] left-[8%]" size={8} delay={2.1} />
-                <Sparkle className="top-[36%] right-[9%]" size={11} delay={0.6} />
-                <Sparkle className="top-[58%] right-[24%]" size={7} delay={1.8} />
+                <Sparkle className="top-[16%] left-[12%]" size={10} delay={0} />
+                <Sparkle className="top-[30%] right-[10%]" size={8} delay={2.2} />
               </div>
             )}
           </div>
@@ -314,8 +304,7 @@ export default function Hero() {
               {/* Mobile/Tablet: sparkles around the emblem */}
               {isMounted && (
                 <div className="absolute inset-0 pointer-events-none lg:hidden">
-                  <Sparkle className="-top-1 right-1" size={11} delay={0.4} />
-                  <Sparkle className="bottom-3 -left-2" size={8} delay={1.6} />
+                  <Sparkle className="-top-1 right-1" size={10} delay={0.4} />
                 </div>
               )}
             </div>
@@ -378,17 +367,15 @@ export default function Hero() {
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Literary Showcase</h4>
             <div className="flex gap-5 items-start">
 
-              {/* Designed book cover (replaces the empty placeholder) */}
-              <div className="relative h-28 w-20 flex-shrink-0 rounded-[3px] rounded-r-md overflow-hidden border border-[#D4AF37]/40 bg-gradient-to-br from-[#2b200e] via-[#16110a] to-[#0b0906] shadow-[6px_8px_18px_rgba(0,0,0,0.65),0_0_22px_rgba(212,175,55,0.15)]">
-                <span className="absolute inset-y-0 left-0 w-[7px] bg-gradient-to-r from-black/60 via-[#D4AF37]/25 to-transparent" />
-                <span className="absolute top-[6px] bottom-[6px] left-[11px] right-[6px] border border-[#D4AF37]/30 rounded-[2px]" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center pl-[5px] text-center">
-                  <span className="text-[5px] tracking-[0.25em] text-[#D4AF37]/70 uppercase">DG Insight</span>
-                  <span className="mt-1.5 font-serif italic text-[13px] leading-[1.05] text-[#F3D98A]">Vocab<br />Decode</span>
-                  <span className="mt-1.5 h-1 w-1 rotate-45 bg-[#D4AF37]" />
-                  <span className="mt-1.5 text-[5px] tracking-[0.3em] text-[#D4AF37]/60 uppercase">Divya Gautam</span>
-                </div>
-              </div>
+              {/* Book cover — the real Vocab Decode cover image */}
+              <SmartLink link={LINKS.vocabDecode} ariaLabel="Vocab Decode" className="group/cover relative h-28 w-20 flex-shrink-0 overflow-hidden rounded-[3px] rounded-r-md border border-[#D4AF37]/40 bg-black shadow-[6px_8px_18px_rgba(0,0,0,0.65),0_0_22px_rgba(212,175,55,0.15)]">
+                <img
+                  src={bookCover.src}
+                  alt="Vocab Decode book cover"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full scale-[1.35] object-cover object-[38%_50%] transition-transform duration-700 group-hover/cover:scale-[1.42]"
+                />
+              </SmartLink>
 
               <div className="flex flex-col">
                 <h3 className="font-serif italic tracking-wide text-[#F5F2EB] text-[20px] md:text-[22px] lg:text-[24px] translate-x-[0px] translate-y-[0px]">Vocab Decode</h3>
@@ -396,9 +383,9 @@ export default function Hero() {
                 <p className="mt-2 leading-relaxed text-[#888] max-lg:text-[#ABA69C] text-[12px] md:text-[12px] lg:text-[13px] translate-x-[0px] translate-y-[0px]">
                   A meticulous lexical compendium designed to demystify etymology.
                 </p>
-                <button className="uppercase tracking-wider mt-4 flex items-center hover:text-white transition-colors w-fit text-[#D4AF37] text-[11px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px]">
+                <Link href={LINKS.books.href} className="uppercase tracking-wider mt-4 flex items-center hover:text-white transition-colors w-fit text-[#D4AF37] text-[11px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px]">
                   Explore the Book <span className="ml-1">→</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -433,32 +420,17 @@ export default function Hero() {
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Flagship Publication</h4>
 
-            {/* Designed book shelf (replaces the empty placeholder) */}
-            <div className="h-28 w-full bg-black/40 border border-[#D4AF37]/20 rounded relative overflow-hidden flex items-end justify-center gap-[5px] pb-[10px] translate-x-[0px] translate-y-[0px]">
-              <span className="absolute top-2.5 left-3 z-10 uppercase tracking-widest text-[#D4AF37]/60 text-[9px] md:text-[10px] lg:text-[11px]">Book Collection</span>
-
-              {/* Warm glow behind the books */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-20 w-2/3 pointer-events-none" style={{ background: "radial-gradient(ellipse at bottom, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0) 70%)" }} />
-
-              {shelfBooks.map((b, i) => (
-                <div
-                  key={`shelf-book-${i}`}
-                  style={{ height: b.h, width: b.w }}
-                  className="relative rounded-t-[2px] border border-[#D4AF37]/30 bg-gradient-to-b from-[#3b2b13] to-[#17110a] shadow-[0_0_10px_rgba(212,175,55,0.12)]"
-                >
-                  <span className="absolute top-[6px] left-[2px] right-[2px] h-px bg-[#D4AF37]/60" />
-                  <span className="absolute bottom-[6px] left-[2px] right-[2px] h-px bg-[#D4AF37]/60" />
-                  {b.title && (
-                    <span className="absolute inset-0 flex items-center justify-center text-[6.5px] tracking-[0.2em] text-[#F3D98A] uppercase [writing-mode:vertical-rl] rotate-180">
-                      Vocab Decode
-                    </span>
-                  )}
-                </div>
-              ))}
-
-              {/* Golden shelf line */}
-              <span className="absolute bottom-[8px] left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
-            </div>
+            {/* Book collection — DG Insight Press image */}
+            <SmartLink link={LINKS.publicationsPage} ariaLabel="Book Collection" className="group/col h-28 w-full bg-black/40 border border-[#D4AF37]/20 rounded relative overflow-hidden flex items-center justify-center translate-x-[0px] translate-y-[0px]">
+              <img
+                src={bookCollection.src}
+                alt="DG Insight Press book collection"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover object-[60%_62%] opacity-80 transition-all duration-700 group-hover/col:scale-105 group-hover/col:opacity-100"
+              />
+              <span className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+              <span className="absolute top-2.5 left-3 z-10 uppercase tracking-widest text-[#D4AF37]/80 text-[9px] md:text-[10px] lg:text-[11px]">Book Collection</span>
+            </SmartLink>
           </div>
 
         </div>

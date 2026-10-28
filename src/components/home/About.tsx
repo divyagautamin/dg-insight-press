@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { LINKS } from "@/lib/links";
 
 // ==========================================
 // BACKGROUND IMAGE IMPORTS (Update paths to match your actual directory structure)
@@ -40,7 +42,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-[220vh] bg-[#050403] overflow-hidden font-sans -mt-[0px] z-30"
+      className="relative w-full lg:min-h-[220vh] bg-[#050403] overflow-hidden font-sans -mt-[0px] z-30"
     >
       {/* ==========================================
           BACKGROUND ARCHITECTURE
@@ -84,13 +86,13 @@ export default function About() {
       {/* ==========================================
           MAIN CONTENT CONTAINER
       ========================================== */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 lg:px-12 pt-[100px] lg:pt-[150px] pb-[100px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[80px] md:pt-[100px] lg:pt-[150px] pb-[60px] md:pb-[80px] lg:pb-[100px]">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="w-full lg:w-[55%] flex flex-col translate-x-[0px] translate-y-[0px] md:translate-y-[20px] lg:translate-y-[0px]"
+          className="w-full md:w-[78%] lg:w-[55%] flex flex-col translate-x-[0px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[0px]"
         >
           <div className="flex items-center gap-4 mb-[20px] md:mb-[30px]">
             <span className="w-[40px] h-[1px] bg-[#D4AF37]"></span>
@@ -100,14 +102,14 @@ export default function About() {
           </div>
 
           <h2
-            className="text-[#F5F2EB] font-normal leading-[48px] md:leading-[70px] lg:leading-[80px] text-[40px] md:text-[60px] lg:text-[72px]"
+            className="text-[#F5F2EB] font-normal leading-[1.12] md:leading-[70px] lg:leading-[80px] text-[42px] md:text-[60px] lg:text-[72px]"
             style={{ fontFamily: "var(--font-playfair), serif" }}
           >
             A mind trained <br />
-            on <span className="italic text-[#D4AF37]">precision</span>
+            on <span className="italic text-[#D4AF37] max-lg:drop-shadow-[0_0_16px_rgba(212,175,55,0.35)]">precision</span>
           </h2>
 
-          <p className="mt-[30px] md:mt-[40px] max-w-[600px] font-light text-[#B3B0AA] text-[14px] md:text-[16px] leading-[28px] md:leading-[32px] tracking-[0.5px]">
+          <p className="mt-[30px] md:mt-[40px] max-w-[600px] font-light text-[#B3B0AA] max-lg:text-[#CFCBC2] text-[15px] md:text-[16px] leading-[28px] md:leading-[32px] tracking-[0.5px]">
             Divya Gautam approaches language the way an administrator approaches policy — with structure, evidence, and an unwavering commitment to clarity. His work sits at the intersection of literary scholarship and public administration, built on the conviction that command of language is the foundation of command of thought.
           </p>
 
@@ -138,7 +140,7 @@ export default function About() {
       ========================================== */}
       <div
         ref={marqueeRef}
-        className="absolute top-[50%] left-0 w-full translate-y-[-80px] md:translate-y-[-100px] lg:translate-y-[-120px] z-30 py-[30px] md:py-[40px] border-y border-[#D4AF37]/30 bg-[#0a0806] overflow-hidden flex items-center shadow-[0_0_40px_rgba(0,0,0,0.95)]"
+        className="relative lg:absolute lg:top-[50%] lg:left-0 w-full translate-y-[0px] md:translate-y-[0px] lg:translate-y-[-120px] z-30 py-[22px] md:py-[32px] lg:py-[40px] border-y border-[#D4AF37]/30 bg-[#0a0806] overflow-hidden flex items-center shadow-[0_0_40px_rgba(0,0,0,0.95)]"
       >
         {isMounted && (
           <motion.div
@@ -167,13 +169,13 @@ export default function About() {
       {/* ==========================================
           BOTTOM CONTENT CONTAINER
       ========================================== */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 lg:px-12 pt-[100px] pb-[150px]">
+      <div id="books" className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[70px] md:pt-[90px] lg:pt-[100px] pb-[100px] md:pb-[130px] lg:pb-[150px]">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="w-full lg:w-[60%] flex flex-col translate-x-[0px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[20px]"
+          className="w-full md:w-[85%] lg:w-[60%] flex flex-col translate-x-[0px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[20px]"
         >
           <div className="flex items-center gap-4 mb-[20px] md:mb-[30px]">
             <span className="w-[40px] h-[1px] bg-[#D4AF37]"></span>
@@ -183,7 +185,7 @@ export default function About() {
           </div>
 
           <h2
-            className="text-[#F5F2EB] font-normal leading-[48px] md:leading-[60px] text-[40px] md:text-[54px] lg:text-[64px]"
+            className="text-[#F5F2EB] font-normal leading-[1.12] md:leading-[60px] text-[38px] md:text-[54px] lg:text-[64px]"
             style={{ fontFamily: "var(--font-playfair), serif" }}
           >
             The Literary Showcase
@@ -196,13 +198,13 @@ export default function About() {
             Vocab <span className="italic text-[#D4AF37]">Decode</span>
           </h3>
 
-          <div className="mt-[20px] inline-flex border border-[#D4AF37]/30 px-[20px] py-[10px] w-fit">
+          <div className="mt-[20px] inline-flex border border-[#D4AF37]/30 px-[16px] md:px-[20px] py-[10px] w-fit max-w-full">
             <span className="text-[#D4AF37] font-mono text-[11px] md:text-[12px] tracking-[1px]">
               550+ Pages • Comprehensive Vocabulary Reference
             </span>
           </div>
 
-          <p className="mt-[30px] md:mt-[40px] max-w-[600px] font-light text-[#B3B0AA] text-[14px] md:text-[16px] leading-[28px] md:leading-[32px] tracking-[0.5px]">
+          <p className="mt-[30px] md:mt-[40px] max-w-[600px] font-light text-[#B3B0AA] max-lg:text-[#CFCBC2] text-[15px] md:text-[16px] leading-[28px] md:leading-[32px] tracking-[0.5px]">
             Vocab Decode is an exhaustive lexical compendium engineered for the discerning reader — structured to demystify the etymological architecture of the English language and equip aspirants, scholars, and connoisseurs of prose with a formidable command of vocabulary. Every entry is curated for precision, pedagogical clarity, and enduring reference value.
           </p>
 
@@ -233,7 +235,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="group/box w-full max-w-[1300px] mx-auto translate-y-[60px] md:translate-y-[100px] lg:translate-y-[140px] border border-[#D4AF37]/30 bg-[#110e0a]/80 backdrop-blur-md isolate [contain:paint] p-[30px] md:p-[40px] lg:p-[50px] flex flex-col md:flex-row items-start md:items-center justify-between gap-[30px] shadow-[0_0_30px_rgba(212,175,55,0.05)] rounded-sm relative overflow-hidden"
+          className="group/box w-full max-w-[1300px] mx-auto translate-y-[0px] md:translate-y-[0px] lg:translate-y-[140px] mt-[60px] md:mt-[80px] lg:mt-0 border border-[#D4AF37]/30 bg-[#110e0a]/80 backdrop-blur-md isolate [contain:paint] p-[30px] md:p-[40px] lg:p-[50px] flex flex-col md:flex-row items-start md:items-center justify-between gap-[30px] shadow-[0_0_30px_rgba(212,175,55,0.05)] rounded-sm relative overflow-hidden"
         >
           {/* Bulletproof CTA Glow */}
           <div className="absolute -left-10 -top-10 w-[300px] h-[300px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.20) 0%, rgba(212,175,55,0) 65%)' }} />
@@ -250,10 +252,10 @@ export default function About() {
             </h4>
           </div>
 
-          <button className="group/btn relative z-10 shrink-0 bg-[#D4AF37]/10 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black hover:-translate-y-1 active:scale-95 transition-all duration-200 px-[30px] py-[15px] md:px-[40px] md:py-[18px] font-semibold text-[13px] md:text-[14px] flex items-center gap-[10px] rounded-sm overflow-hidden">
+          <Link href={LINKS.contact.href} className="group/btn relative z-10 shrink-0 max-md:w-full max-md:justify-center bg-[#D4AF37]/10 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black hover:-translate-y-1 active:scale-95 transition-all duration-200 px-[30px] py-[15px] md:px-[40px] md:py-[18px] font-semibold text-[13px] md:text-[14px] flex items-center gap-[10px] rounded-sm overflow-hidden">
             Get a Signed Copy
             <span className="text-[16px] leading-none transition-transform duration-200 group-hover/btn:translate-x-1">→</span>
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

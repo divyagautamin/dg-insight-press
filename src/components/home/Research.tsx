@@ -20,6 +20,11 @@ import researchDesktop from "@/assets/desktop/research_top_desktop.webp";
 import researchTablet from "@/assets/tablet/research_top_tablet.webp";
 import researchMobile from "@/assets/mobile/research_top_mobile.webp";
 import dgLogoGolden from "@/assets/icons/dg_logo_golden.webp";
+import SmartLink from "@/components/ui/SmartLink";
+import { LINKS, RESEARCH_PAGES_ACTIVE } from "@/lib/links";
+import { researchPapers } from "@/data/content";
+
+const paperLink = (i: number) => ({ href: `/research/${researchPapers[i].slug}`, active: RESEARCH_PAGES_ACTIVE });
 
 export default function Research() {
   return (
@@ -48,7 +53,7 @@ export default function Research() {
       {/* ==========================================
           MAIN CONTENT CONTAINER
       ========================================== */}
-      <div className="relative z-10 max-w-[1400px] mx-auto translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[10px] lg:translate-y-[75px]" >
+      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10 lg:px-0 pt-20 md:pt-24 lg:pt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[10px] lg:translate-y-[75px]" >
         
         {/* HEADER SECTION */}
         <motion.div 
@@ -66,18 +71,18 @@ export default function Research() {
           </div>
 
           <h2 
-            className="text-[#F5F2EB] text-[42px] md:text-[60px] lg:text-[78px] leading-[1.1] font-normal"
+            className="text-[#F5F2EB] text-[40px] md:text-[60px] lg:text-[78px] leading-[1.1] font-normal"
             style={{ fontFamily: "var(--font-playfair), serif" }}
           >
             Academic Portfolio <br />
             <span className="italic text-[#D4AF37]">& Research</span>
           </h2>
 
-          <p className="mt-8 max-w-xl text-[#A0A0A0] text-[15px] md:text-[17px] lg:text-[18px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[20px] leading-relexed">
+          <p className="mt-6 md:mt-8 max-w-xl text-[#A0A0A0] max-lg:text-[#C4C0B7] text-[15px] md:text-[17px] lg:text-[18px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[20px] max-lg:leading-relaxed">
             A collection of scholarly research exploring language, policy, education and governance with academic rigour and global relevance.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 mt-10 md:mt-12 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px]">
             {[
               { icon: Landmark, title: "Evidence-Based", sub: "Research" },
               { icon: Feather, title: "Interdisciplinary", sub: "Approach" },
@@ -98,7 +103,7 @@ export default function Research() {
         {/* ==========================================
             LATEST RESEARCH GRID (Pseudo-Glassmorphism - 0% Lag)
         ========================================== */}
-        <div className="mt-32">
+        <div id="publications" className="mt-16 md:mt-20 lg:mt-32">
           <div className="flex items-center gap-3 mb-10">
             <Sparkles className="w-5 h-5 text-[#D4AF37]" />
             <h3 className="uppercase tracking-[0.25em] text-[#D4AF37] text-[13px] font-semibold">
@@ -106,7 +111,7 @@ export default function Research() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             
             {/* Card 1 */}
             <motion.div 
@@ -126,7 +131,7 @@ export default function Research() {
                 <h4 className="text-[24px] text-[#F5F2EB] leading-tight mb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>
                   Lexical Structures in Administrative Discourse
                 </h4>
-                <p className="text-[#9A9A9A] text-[14px] leading-relaxed mb-8">
+                <p className="text-[#9A9A9A] max-lg:text-[#B5B1A8] text-[14px] leading-relaxed mb-8">
                   An investigation into how lexical precision shapes clarity and authority in institutional communication.
                 </p>
               </div>
@@ -140,9 +145,9 @@ export default function Research() {
                 <div className="w-full h-px bg-[#D4AF37]/10 mb-4"></div>
                 <div className="flex items-center justify-between">
                   <span className="text-[#808080] text-[11px] font-mono">Status: Under Review</span>
-                  <button className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                  <SmartLink link={paperLink(0)} className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     View Details <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </SmartLink>
                 </div>
               </div>
             </motion.div>
@@ -165,7 +170,7 @@ export default function Research() {
                 <h4 className="text-[24px] text-[#F5F2EB] leading-tight mb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>
                   Etymology as a Pedagogical Tool
                 </h4>
-                <p className="text-[#9A9A9A] text-[14px] leading-relaxed mb-8">
+                <p className="text-[#9A9A9A] max-lg:text-[#B5B1A8] text-[14px] leading-relaxed mb-8">
                   Exploring root-based learning strategies to enhance vocabulary acquisition among competitive exam aspirants.
                 </p>
               </div>
@@ -179,9 +184,9 @@ export default function Research() {
                 <div className="w-full h-px bg-[#D4AF37]/10 mb-4"></div>
                 <div className="flex items-center justify-between">
                   <span className="text-[#808080] text-[11px] font-mono">Status: Under Review</span>
-                  <button className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                  <SmartLink link={paperLink(1)} className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     View Details <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </SmartLink>
                 </div>
               </div>
             </motion.div>
@@ -192,7 +197,7 @@ export default function Research() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group flex flex-col justify-between bg-gradient-to-b from-[#1a150c]/60 to-[#050403]/80 backdrop-blur-md border border-[#D4AF37]/30 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/70 hover:shadow-[0_0_20px_rgba(212,175,55,0.15)] transition-all duration-500 p-7 md:p-8 rounded-xl isolate [contain:paint] transform-gpu will-change-transform translate-x-[0px] translate-y-[0px]"
+              className="group md:col-span-2 lg:col-span-1 flex flex-col justify-between bg-gradient-to-b from-[#1a150c]/60 to-[#050403]/80 backdrop-blur-md border border-[#D4AF37]/30 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/70 hover:shadow-[0_0_20px_rgba(212,175,55,0.15)] transition-all duration-500 p-7 md:p-8 rounded-xl isolate [contain:paint] transform-gpu will-change-transform translate-x-[0px] translate-y-[0px]"
             >
               <div>
                 <span className="inline-block bg-[#D4AF37] text-black text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-sm mb-8">
@@ -204,7 +209,7 @@ export default function Research() {
                 <h4 className="text-[24px] text-[#F5F2EB] leading-tight mb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>
                   Language and Public Policy Communication
                 </h4>
-                <p className="text-[#9A9A9A] text-[14px] leading-relaxed mb-8">
+                <p className="text-[#9A9A9A] max-lg:text-[#B5B1A8] text-[14px] leading-relaxed mb-8">
                   Analysing the role of precise language in effective, citizen-facing policy communication.
                 </p>
               </div>
@@ -218,9 +223,9 @@ export default function Research() {
                 <div className="w-full h-px bg-[#D4AF37]/10 mb-4"></div>
                 <div className="flex items-center justify-between">
                   <span className="text-[#808080] text-[11px] font-mono">Status: Under Review</span>
-                  <button className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                  <SmartLink link={paperLink(2)} className="text-[#D4AF37] text-[13px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     View Details <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </SmartLink>
                 </div>
               </div>
             </motion.div>
@@ -231,7 +236,7 @@ export default function Research() {
         {/* ==========================================
             FOCUS AREAS & IMPACT — Premium Compact Glass
         ========================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 mt-6 md:mt-8">
 
 {/* Left Panel */}
 <motion.div 
@@ -314,7 +319,7 @@ export default function Research() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-16 relative overflow-hidden bg-gradient-to-r from-[#0a0703] via-[#1a1309] to-[#0a0703] border border-[#D4AF37]/40 rounded-[32px] md:rounded-[40px] py-10 px-8 md:px-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(212,175,55,0.1)] isolate [contain:paint] translate-x-[0px] translate-y-[0px]"
+          className="mt-12 md:mt-16 relative overflow-hidden bg-gradient-to-r from-[#0a0703] via-[#1a1309] to-[#0a0703] border border-[#D4AF37]/40 rounded-[28px] md:rounded-[40px] py-10 px-6 md:px-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(212,175,55,0.1)] isolate [contain:paint] translate-x-[0px] translate-y-[0px]"
         >
           {/* Internal Premium Glow (Performance Safe) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%)' }} />
@@ -347,12 +352,12 @@ export default function Research() {
 
           {/* Premium Pill-Shaped Button */}
           <div className="relative z-10 shrink-0 translate-y-[0px]">
-            <button className="group/btn relative flex items-center gap-4 bg-black/40 backdrop-blur-md border border-[#D4AF37]/80 text-[#D4AF37] px-8 py-4 md:px-10 md:py-4 text-[14px] font-medium tracking-widest rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] active:scale-95">
+            <SmartLink link={LINKS.researchArchive} className="group/btn relative flex items-center gap-4 bg-black/40 backdrop-blur-md border border-[#D4AF37]/80 text-[#D4AF37] px-8 py-4 md:px-10 md:py-4 text-[12px] md:text-[14px] font-medium tracking-widest rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] active:scale-95">
               <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-white">
                 Explore Full Academic Archive
               </span>
               <ArrowRight className="relative z-10 w-4 h-4 transition-all duration-300 group-hover/btn:text-white group-hover/btn:translate-x-1" />
-            </button>
+            </SmartLink>
           </div>
         </motion.div>
 
