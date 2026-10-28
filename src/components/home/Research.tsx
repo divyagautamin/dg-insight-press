@@ -23,6 +23,7 @@ import dgLogoGolden from "@/assets/icons/dg_logo_golden.webp";
 import SmartLink from "@/components/ui/SmartLink";
 import { LINKS, RESEARCH_PAGES_ACTIVE } from "@/lib/links";
 import { researchPapers } from "@/data/content";
+import { softGlow } from "@/lib/glow";
 
 const paperLink = (i: number) => ({ href: `/research/${researchPapers[i].slug}`, active: RESEARCH_PAGES_ACTIVE });
 
@@ -322,7 +323,7 @@ export default function Research() {
           className="mt-12 md:mt-16 relative overflow-hidden bg-gradient-to-r from-[#0a0703] via-[#1a1309] to-[#0a0703] border border-[#D4AF37]/40 rounded-[28px] md:rounded-[40px] py-10 px-6 md:px-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(212,175,55,0.1)] isolate [contain:paint] translate-x-[0px] translate-y-[0px]"
         >
           {/* Internal Premium Glow (Performance Safe) */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%)' }} />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none" style={{ background: softGlow(0.18, "ellipse at center") }} />
           
           {/* Subtle Star Particles (CSS only) */}
           <div className="absolute left-[10%] top-[20%] w-1 h-1 bg-[#D4AF37] rounded-full shadow-[0_0_10px_rgba(212,175,55,1)]" />

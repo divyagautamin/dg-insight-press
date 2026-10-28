@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { LINKS } from "@/lib/links";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================
 // BACKGROUND IMAGE IMPORTS (Update paths to match your actual directory structure)
@@ -143,11 +144,13 @@ export default function About() {
         className="relative lg:absolute lg:top-[50%] lg:left-0 w-full translate-y-[0px] md:translate-y-[0px] lg:translate-y-[-120px] z-30 py-[22px] md:py-[32px] lg:py-[40px] border-y border-[#D4AF37]/30 bg-[#0a0806] overflow-hidden flex items-center shadow-[0_0_40px_rgba(0,0,0,0.95)]"
       >
         {isMounted && (
-          <motion.div
-            animate={marqueeInView ? { x: ["0%", "-50%"] } : {}}
-            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            style={{ willChange: marqueeInView ? "transform" : "auto" }}
-            className="flex whitespace-nowrap items-center"
+          <div
+            style={{
+              animation: "dg-marquee 120s linear infinite",
+              animationPlayState: marqueeInView ? "running" : "paused",
+              willChange: "transform",
+            }}
+            className="flex w-max whitespace-nowrap items-center"
           >
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex items-center">
@@ -162,7 +165,7 @@ export default function About() {
                 ))}
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
       </div>
 
@@ -238,7 +241,7 @@ export default function About() {
           className="group/box w-full max-w-[1300px] mx-auto translate-y-[0px] md:translate-y-[0px] lg:translate-y-[140px] mt-[60px] md:mt-[80px] lg:mt-0 border border-[#D4AF37]/30 bg-[#110e0a]/80 backdrop-blur-md isolate [contain:paint] p-[30px] md:p-[40px] lg:p-[50px] flex flex-col md:flex-row items-start md:items-center justify-between gap-[30px] shadow-[0_0_30px_rgba(212,175,55,0.05)] rounded-sm relative overflow-hidden"
         >
           {/* Bulletproof CTA Glow */}
-          <div className="absolute -left-10 -top-10 w-[300px] h-[300px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.20) 0%, rgba(212,175,55,0) 65%)' }} />
+          <div className="absolute -left-10 -top-10 w-[300px] h-[300px] pointer-events-none z-0" style={{ background: softGlow(0.24) }} />
 
           <div className="relative z-10">
             <span className="text-[#D4AF37] uppercase font-mono tracking-[3px] text-[10px] md:text-[11px] font-semibold">

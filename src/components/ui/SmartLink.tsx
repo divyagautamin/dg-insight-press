@@ -75,11 +75,11 @@ export function ComingSoonToast() {
     <div
       role="status"
       aria-live="polite"
-      className={`pointer-events-none fixed bottom-6 left-1/2 z-[100] -translate-x-1/2 transition-all duration-500 ${
+      className={`pointer-events-none fixed bottom-6 left-1/2 z-[100] -translate-x-1/2 transition-[opacity,transform] duration-300 ${
         message ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      <div className="flex items-center gap-3 rounded-full border border-[#D4AF37]/40 bg-[#0d0b08]/95 px-5 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(212,175,55,0.12)] backdrop-blur-md">
+      <div className="flex items-center gap-3 rounded-full border border-[#D4AF37]/40 bg-[#0d0b08] px-5 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(212,175,55,0.12)]">
         <span className="h-1.5 w-1.5 rotate-45 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.9)]" />
         <span className="whitespace-nowrap text-[12px] tracking-wide text-[#F5F2EB]">{message ?? ""}</span>
       </div>

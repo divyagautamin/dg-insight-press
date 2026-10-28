@@ -36,6 +36,7 @@ import quoteImage from "@/assets/media/quote.webp";
 import SmartLink from "@/components/ui/SmartLink";
 import { ESSAY_PAGES_ACTIVE } from "@/lib/links";
 import { essays } from "@/data/content";
+import { softGlow } from "@/lib/glow";
 
 const essayLink = (i) => ({ href: `/insights/${essays[i].slug}`, active: ESSAY_PAGES_ACTIVE });
 
@@ -151,7 +152,7 @@ export default function Insights() {
     className="group relative bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 backdrop-blur-md border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.2)] rounded-2xl p-5 md:p-6 isolate [contain:paint] transition-all duration-500 flex flex-col justify-center"
   >
     {/* Performance-Safe Internal Glow */}
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0" style={{ background: 'radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 70%)' }} />
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0" style={{ background: softGlow(0.096, "circle at center") }} />
 
     <div className="relative z-10 grid md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-6 md:gap-8 items-center h-full">
       {/* IMAGE: Reduced min-h to make the overall box shorter */}
@@ -274,7 +275,7 @@ export default function Insights() {
               className="relative md:col-span-2 lg:col-span-1 bg-gradient-to-br from-[#15110a] to-[#050403] border border-[#D4AF37]/30 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] rounded-2xl p-7 isolate [contain:paint] overflow-hidden transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
             >
               {/* Inner Glow (Zero lag radial gradient) */}
-              <div className="absolute right-0 bottom-0 w-32 h-32 pointer-events-none" style={{ background: 'radial-gradient(circle at bottom right, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%)' }} />
+              <div className="absolute right-0 bottom-0 w-32 h-32 pointer-events-none" style={{ background: softGlow(0.18, "circle at bottom right") }} />
               
               <div className="relative z-10 flex justify-between items-start mb-2 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]">
                 <p className="uppercase tracking-[0.25em] text-[#D4AF37] text-[11px] font-bold">Stay Inspired</p>

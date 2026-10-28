@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LINKS } from "@/lib/links";
+import { softGlow } from "@/lib/glow";
 
 // Desktop menu (same items as before)
 const desktopLinks = [
@@ -139,7 +140,7 @@ export default function Navbar() {
             {/* Soft golden glow */}
             <div
               className="pointer-events-none absolute -right-24 top-10 h-[420px] w-[420px]"
-              style={{ background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0) 65%)" }}
+              style={{ background: softGlow(0.144, "circle") }}
             />
 
             <nav className="relative h-full overflow-y-auto px-6 md:px-10 pb-10" aria-label="Mobile">

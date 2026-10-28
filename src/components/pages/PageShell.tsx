@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { LINKS } from "@/lib/links";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================================================
 // PageShell — the shared look for every separate page of the website
@@ -28,11 +29,11 @@ export default function PageShell({ eyebrow, title, intro, status, backLink, chi
         {/* Ambient golden glows */}
         <div
           className="pointer-events-none absolute -left-40 top-10 h-[600px] w-[600px]"
-          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, rgba(212,175,55,0) 65%)" }}
+          style={{ background: softGlow(0.108, "circle") }}
         />
         <div
           className="pointer-events-none absolute -right-48 top-[30%] h-[520px] w-[520px]"
-          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(212,175,55,0) 65%)" }}
+          style={{ background: softGlow(0.072, "circle") }}
         />
 
         <div className="relative z-10 mx-auto max-w-[1100px] px-5 md:px-10">

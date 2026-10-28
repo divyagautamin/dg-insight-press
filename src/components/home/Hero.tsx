@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SmartLink from "@/components/ui/SmartLink";
 import { LINKS } from "@/lib/links";
+import SunGlow from "@/components/ui/SunGlow";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================
 // IMAGE IMPORTS (From src/assets/...)
@@ -34,23 +36,39 @@ import bookCollection from "@/assets/media/support_book.webp";
 // Small 4-point twinkling star
 function Sparkle({ className = "", size = 10, delay = 0 }) {
   return (
-    <motion.svg
+    <svg
       viewBox="0 0 24 24"
       width={size}
       height={size}
-      className={`absolute pointer-events-none ${className}`}
-      initial={{ opacity: 0, scale: 0.4 }}
-      animate={{ opacity: [0, 1, 0], scale: [0.4, 1, 0.4], rotate: [0, 90] }}
-      transition={{ duration: 3.5, repeat: Infinity, delay, ease: "easeInOut" }}
+      aria-hidden="true"
+      className={`absolute pointer-events-none opacity-0 animate-[dg-twinkle_3.5s_ease-in-out_infinite] ${className}`}
+      style={{ animationDelay: `${delay}s` }}
     >
       <path
         d="M12 0 C12.8 7 17 11.2 24 12 C17 12.8 12.8 17 12 24 C11.2 17 7 12.8 0 12 C7 11.2 11.2 7 12 0Z"
         fill="#F5D77A"
         style={{ filter: "drop-shadow(0 0 4px rgba(212,175,55,0.9))" }}
       />
-    </motion.svg>
+    </svg>
   );
 }
+
+// Golden dust particles, animated by CSS on the GPU (smooth, no lag).
+// Positions are generated once, so the page stays fast and stable.
+function makeDust(count, seed, sizeMax, drift) {
+  let x = seed;
+  const rnd = () => ((x = (x * 9301 + 49297) % 233280) / 233280);
+  return Array.from({ length: count }, () => ({
+    size: rnd() * sizeMax + 1,
+    left: rnd() * 100,
+    top: rnd() * 100,
+    dx: (rnd() - 0.5) * drift,
+    duration: 6 + rnd() * 6,
+    delay: -rnd() * 10,
+  }));
+}
+const heroDust = makeDust(15, 7, 3, 40);
+const legacyDust = makeDust(20, 23, 2, 24);
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -95,24 +113,26 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/60 to-transparent" />
         
         {/* Gold Ambient Glows */}
-        <div className="absolute -left-40 top-20 h-[700px] w-[700px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 65%)' }} />
-        <div className="absolute right-[-200px] top-[-120px] h-[650px] w-[650px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 65%)' }} />
+        <div className="absolute -left-40 top-20 h-[700px] w-[700px] pointer-events-none z-0" style={{ background: softGlow(0.1) }} />
+        <div className="absolute right-[-200px] top-[-120px] h-[650px] w-[650px] pointer-events-none z-0" style={{ background: softGlow(0.1) }} />
 
         {/* Floating Golden Dust */}
         {isMounted && (
           <div className="absolute inset-0 overflow-hidden">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <motion.span
+            {heroDust.map((d, i) => (
+              <span
                 key={i}
-                className="absolute rounded-full bg-[#D4AF37] blur-[0.4px] shadow-[0_0_14px_rgba(212,175,55,.9)]"
+                className="absolute rounded-full bg-[#D4AF37] blur-[0.4px] shadow-[0_0_14px_rgba(212,175,55,.9)] will-change-transform"
                 style={{
-                  width: Math.random() * 3 + 1,
-                  height: Math.random() * 3 + 1,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  width: d.size,
+                  height: d.size,
+                  left: `${d.left}%`,
+                  top: `${d.top}%`,
+                  opacity: 0,
+                  "--dx": `${d.dx}px`,
+                  "--dy": "-80px",
+                  animation: `dg-dust ${d.duration}s ease-in-out ${d.delay}s infinite`,
                 }}
-                animate={{ y: [0, -80, 0], x: [0, 20, -15, 0], scale: [0.4, 1.2, .8], opacity: [0, .9, 0] }}
-                transition={{ duration: 5 + Math.random() * 5, repeat: Infinity, delay: Math.random() * 3, ease: "linear" }}
               />
             ))}
           </div>
@@ -145,14 +165,12 @@ export default function Hero() {
           >
             The discipline of <br /> language, <br />
             the{" "}
-            <motion.span
-              className="italic pr-1 text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_18px_rgba(212,175,55,0.35)]"
+            <span
+              className="italic pr-1 text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_18px_rgba(212,175,55,0.35)] animate-[dg-shine_5s_linear_infinite]"
               style={{ backgroundImage: "linear-gradient(90deg, #C9A032 0%, #F7E08E 25%, #D4AF37 50%, #F7E08E 75%, #C9A032 100%)" }}
-              animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             >
               ambition
-            </motion.span>{" "}
+            </span>{" "}
             <br />
             of service.
           </h1>
@@ -197,20 +215,15 @@ export default function Hero() {
             />
 
             {/* Mobile/Tablet: soft pulsing golden glow over the portrait */}
-            <motion.div
-              className="absolute inset-0 z-10 pointer-events-none lg:hidden"
-              style={{ background: "radial-gradient(ellipse 65% 45% at 56% 42%, rgba(212,175,55,0.16) 0%, rgba(212,175,55,0) 70%)", mixBlendMode: "screen" }}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            <div
+              className="absolute inset-0 z-10 pointer-events-none lg:hidden animate-[dg-breathe_8s_ease-in-out_infinite]"
+              style={{ background: softGlow(0.2, "ellipse 70% 55% at 56% 40%", "255,214,140"), mixBlendMode: "soft-light" }}
             />
 
             {/* Mobile/Tablet: light sweep passing across the portrait */}
-            <motion.div
-              className="absolute inset-y-0 left-0 w-1/3 z-10 pointer-events-none lg:hidden"
+            <div
+              className="absolute inset-y-0 left-0 w-1/3 z-10 pointer-events-none lg:hidden will-change-transform animate-[dg-sweep_13s_ease-in-out_infinite]"
               style={{ background: "linear-gradient(100deg, transparent 0%, rgba(255,230,160,0.12) 50%, transparent 100%)" }}
-              initial={{ x: "-120%" }}
-              animate={{ x: "360%" }}
-              transition={{ duration: 4, repeat: Infinity, repeatDelay: 9, ease: "easeInOut" }}
             />
 
             {/* Mobile fade: all four edges melt into the background */}
@@ -255,25 +268,19 @@ export default function Hero() {
         {/* Localized Golden Dust Particles */}
         <div className="absolute inset-0 overflow-hidden flex justify-center items-center pointer-events-none">
           <div className="relative w-full max-w-[1000px] h-[300px]">
-            {isMounted && Array.from({ length: 20 }).map((_, i) => (
-              <motion.span
+            {isMounted && legacyDust.map((d, i) => (
+              <span
                 key={`legacy-dust-${i}`}
-                className="absolute rounded-full bg-[#D4AF37] shadow-[0_0_8px_1px_#D4AF37]"
+                className="absolute rounded-full bg-[#D4AF37] shadow-[0_0_8px_1px_#D4AF37] will-change-transform"
                 style={{
-                  width: Math.random() * 2 + 1,
-                  height: Math.random() * 2 + 1,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  x: [0, (Math.random() - 0.5) * 20, 0],
-                  opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                  width: d.size,
+                  height: d.size,
+                  left: `${d.left}%`,
+                  top: `${d.top}%`,
+                  opacity: 0,
+                  "--dx": `${d.dx}px`,
+                  "--dy": "-30px",
+                  animation: `dg-dust ${d.duration - 2}s ease-in-out ${d.delay}s infinite`,
                 }}
               />
             ))}
@@ -290,8 +297,8 @@ export default function Hero() {
 
             {/* DG Emblem Integration (Pure Core Graphic) */}
             <div className="relative shrink-0 flex justify-center items-center h-[130px] w-[130px] md:h-[180px] md:w-[180px] lg:h-[300px] lg:w-[300px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px]">
-              {/* Subtle Core Radiance */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[150%] w-[150%] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 50%)' }}></div>
+              {/* Sun-like golden aura (soft halo + slowly turning light rays) */}
+              <SunGlow className="h-[260%] w-[260%] z-0" />
               
               <div className="relative h-28 w-28 md:h-40 md:w-40 lg:h-120 lg:w-120 flex items-center justify-center">
                 <img 
