@@ -15,15 +15,22 @@ import {
   Mail,
   Clock,
   ShieldCheck,
-  Eye
+  Eye,
+  User
 } from "lucide-react";
+import Link from "next/link";
+import SmartLink from "@/components/ui/SmartLink";
+import { LINKS, CONTACT } from "@/lib/links";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import reviewBook from "@/assets/media/review_book.webp";
-import stamp from "@/assets/media/stamp.webp";
+import stamp from "@/assets/media/stamp_seal.webp";
+import SunGlow from "@/components/ui/SunGlow";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================
 // CUSTOM PREMIUM VERIFIED SEAL SVG
@@ -37,6 +44,13 @@ const VerifiedSeal = ({ className }: { className?: string }) => (
 
 // ==========================================
 // TESTIMONIALS DATA (Expanded for Loop)
+// ------------------------------------------
+// HOW TO ADD A PHOTO:
+//   1. Put the photo in the  public/reviews/  folder
+//      (square photos look best, e.g. 400 x 400, .jpg or .webp)
+//   2. Write its path in that person's  image  field, for example:
+//        image: "/reviews/vikas-divyakirti.jpg",
+//   Until a photo is added, an elegant golden placeholder is shown.
 // ==========================================
 const testimonials = [
   {
@@ -107,10 +121,10 @@ export default function Reviews() {
   return (
     <section
       id="reviews"
-      className="relative w-full min-h-screen bg-[#050403] overflow-hidden pt-10 md:pt-12 pb-24 md:pb-32 font-sans"
+      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-12 pb-16 md:pb-20 lg:pb-32 font-sans"
     >
       {/* Background Soft Glow (Blended, no sharp lines) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#D4AF37]/[0.03] blur-[100px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[560px] pointer-events-none" style={{ background: softGlow(0.07, "ellipse 50% 50% at center") }} />
 
       <div className="relative z-10 max-w-[1450px] mx-auto px-5 md:px-8 lg:px-10">
         
@@ -142,7 +156,7 @@ export default function Reviews() {
               <span className="w-8 md:w-12 h-[1px] bg-[#D4AF37]/40" />
             </div>
 
-            <p className="mx-auto max-w-2xl text-[#A0A0A0] text-[12px] md:text-[13.5px] lg:text-[14.5px] leading-relaxed px-4 md:px-0">
+            <p className="mx-auto max-w-2xl text-[#A0A0A0] max-lg:text-[#C4C0B7] text-[13.5px] md:text-[13.5px] lg:text-[14.5px] leading-relaxed px-2 md:px-0">
               Voices of mentors, educators and aspirants who have experienced the depth and clarity of Vocab Decode.
             </p>
           </motion.div>
@@ -214,17 +228,21 @@ export default function Reviews() {
                   <motion.div
                     whileHover={{ y: -8 }}
                     transition={{ duration: 0.3 }}
-                    className="group flex flex-col justify-between h-full p-5 md:p-6 rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_35px_rgba(212,175,55,0.2),inset_0_1px_1px_rgba(212,175,55,0.4)] transition-all duration-500"
+                    className="group flex flex-col justify-between h-full p-5 md:p-6 rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_35px_rgba(212,175,55,0.2),inset_0_1px_1px_rgba(212,175,55,0.4)] transition-all duration-500"
                   >
                     <div>
                       {/* Avatar */}
                       <div className="relative mx-auto w-20 h-20 md:w-24 md:h-24 mb-4 md:mb-5">
                         <div className="w-full h-full rounded-full border-[1.5px] md:border-[2px] border-[#D4AF37]/60 p-1 flex items-center justify-center bg-[#050403] overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.2)]">
                           {item.image ? (
-                            <Image src={item.image} alt={item.name} width={96} height={96} className="w-full h-full object-cover rounded-full" />
+                            <Image src={item.image} alt={item.name} width={192} height={192} className="w-full h-full object-cover rounded-full" />
                           ) : (
-                            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#1c1710] to-[#0a0805] flex items-center justify-center text-[#D4AF37] font-serif text-lg md:text-xl font-bold tracking-wider">
-                              {item.name.split(" ").map(n => n[0]).join("")}
+                            /* PHOTO PLACEHOLDER — replaced automatically once an image path is added above */
+                            <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#1c1710] via-[#120e09] to-[#0a0805] flex items-center justify-center overflow-hidden">
+                              <User className="absolute -bottom-2 w-[78%] h-[78%] text-[#D4AF37]/10 stroke-[1.2]" />
+                              <span className="relative text-[#D4AF37] font-serif text-lg md:text-xl font-bold tracking-wider drop-shadow-[0_0_10px_rgba(212,175,55,0.35)]">
+                                {item.name.replace(/^Dr\.\s*/, "").split(" ").map(n => n[0]).join("").slice(0, 2)}
+                              </span>
                             </div>
                           )}
                         </div>
@@ -251,7 +269,7 @@ export default function Reviews() {
                         <span className="w-6 md:w-8 h-[1px] bg-[#D4AF37]/30" />
                       </div>
 
-                      <p className="text-[#A0A0A0] text-[11.5px] md:text-[12.5px] italic leading-relaxed text-center pt-1 pb-3 md:pb-4">
+                      <p className="text-[#A0A0A0] max-lg:text-[#C4C0B7] text-[13px] md:text-[12.5px] italic leading-relaxed text-center pt-1 pb-3 md:pb-4">
                         “{item.review}”
                       </p>
                     </div>
@@ -279,19 +297,23 @@ export default function Reviews() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="relative z-20 rounded-2xl border border-[#D4AF37]/40 bg-transparent shadow-[inset_0_1px_1px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/70 hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-500 translate-y-[20px] md:translate-y-[40px]"
+          className="relative z-20 rounded-2xl border border-[#D4AF37]/40 bg-transparent shadow-[inset_0_1px_1px_rgba(212,175,55,0.3)] hover:border-[#D4AF37]/70 hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-500 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[40px]"
         >
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#000000]/95 via-[#110e0a]/80 to-[#000000]/95 backdrop-blur-xl overflow-hidden pointer-events-none z-0">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#d4af3710,transparent_70%)]" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#000000]/95 via-[#110e0a]/90 to-[#000000]/95 overflow-hidden pointer-events-none z-0">
+             <div className="absolute inset-0" style={{ background: softGlow(0.07, "ellipse 60% 80% at center") }} />
+             {/* Floating golden dust + twinkling stars */}
+             <GoldDust count={16} seed={31} rise={40} />
+             <SparkleField stars={[[18, 30, 11, 0.3], [78, 36, 8, 1.7], [22, 64, 9, 2.6], [70, 72, 12, 1.1], [40, 92, 8, 3.2]]} />
           </div>
 
           {/* ULTRA-COMPACT GRID: Reduced padding and minimal gaps */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-4 items-center px-4 py-4 md:px-8 md:py-5">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-4 items-center px-5 py-8 md:px-8 md:py-10 lg:py-5">
             
             {/* Left: Book Image (Forced Massive Size Architecture) */}
             <div className="flex justify-center order-2 lg:order-1 -my-4 lg:-my-24 pointer-events-none shrink-0">
               <div className="relative group shrink-0">
-                <div className="absolute inset-0 bg-[#D4AF37]/10 blur-3xl rounded-full transform scale-90 transition-transform duration-500" />
+                {/* Sun-like aura behind the book */}
+                <SunGlow className="h-[150%] w-[150%]" intensity={0.45} />
                 <Image
                   src={reviewBook}
                   alt="Vocab Decode Signed Edition"
@@ -326,18 +348,18 @@ export default function Reviews() {
                 <span className="w-6 md:w-8 h-[1px] bg-[#D4AF37]/40" />
               </div>
 
-              <p className="text-[#A0A0A0] text-[11px] md:text-[12px] leading-relaxed max-w-sm mx-auto mb-4">
+              <p className="text-[#B9B5AC] text-[12px] md:text-[12.5px] leading-relaxed max-w-sm mx-auto mb-4">
                 A limited number of first-edition copies are personally signed by Divya Gautam.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 {/* ARCHITECTURE FIX: Simple, Solid Gold Button */}
-                <button className="w-full sm:w-auto bg-[#D4AF37] hover:bg-[#c29f2d] text-black font-bold tracking-wide text-[11.5px] md:text-[12.5px] px-6 py-2.5 md:px-7 md:py-3 rounded-lg transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:-translate-y-0.5 z-10">
+                <Link href={LINKS.contact.href} className="text-center w-full sm:w-auto bg-[#D4AF37] hover:bg-[#c29f2d] text-black font-bold tracking-wide text-[11.5px] md:text-[12.5px] px-6 py-2.5 md:px-7 md:py-3 rounded-lg transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.4)] hover:-translate-y-0.5 z-10">
                   Reserve Signed Copy →
-                </button>
-                <button className="w-full sm:w-auto border border-[#D4AF37]/50 hover:border-[#D4AF37] bg-black hover:bg-[#D4AF37]/15 text-[#F5F2EB] font-medium text-[11.5px] md:text-[12.5px] px-6 py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                </Link>
+                <SmartLink link={LINKS.signedCopy} className="w-full sm:w-auto border border-[#D4AF37]/50 hover:border-[#D4AF37] bg-black hover:bg-[#D4AF37]/15 text-[#F5F2EB] font-medium text-[11.5px] md:text-[12.5px] px-6 py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
                   <Eye className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D4AF37]" /> View Details
-                </button>
+                </SmartLink>
               </div>
             </div>
 
@@ -347,10 +369,9 @@ export default function Reviews() {
                 <Image
                   src={stamp}
                   alt="Signed Edition Stamp"
-                  width={200}
-                  height={200}
-                  priority
-                  className="w-[110px] sm:w-[130px] md:w-[150px] lg:w-[200px] h-auto object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.8)] pointer-events-auto"
+                  width={400}
+                  height={441}
+                  className="w-[130px] sm:w-[150px] md:w-[170px] lg:w-[200px] h-auto object-contain pointer-events-auto"
                 />
               </div>
             </div>
@@ -365,7 +386,7 @@ export default function Reviews() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative z-20 rounded-xl border border-[#D4AF37]/25 bg-[#0A0907]/60 backdrop-blur-xl p-5 md:p-6 lg:p-8 translate-y-[50px] md:translate-y-[80px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)]"
+          className="relative z-20 rounded-xl border border-[#D4AF37]/25 bg-[#0A0907]/60 p-5 md:p-6 lg:p-8 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-[#D4AF37]/15">
             
@@ -385,7 +406,7 @@ export default function Reviews() {
               </div>
               <div>
                 <h4 className="text-[#808080] text-[9px] md:text-[10px] font-bold tracking-widest uppercase">Email Us</h4>
-                <p className="text-[#D4AF37] text-[11px] md:text-[12px] font-medium mt-0.5 break-all">contact@divyagautam.com</p>
+                <a href={`mailto:${CONTACT.email}`} className="block text-[#D4AF37] text-[11px] md:text-[12px] font-medium mt-0.5 break-all hover:underline underline-offset-4">{CONTACT.email}</a>
               </div>
             </div>
 

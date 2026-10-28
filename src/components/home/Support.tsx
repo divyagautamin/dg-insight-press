@@ -22,6 +22,8 @@ import supportDesktop from "@/assets/desktop/support_top_desktop.webp";
 import supportTablet from "@/assets/tablet/support_top_tablet.webp";
 import supportMobile from "@/assets/mobile/support_top_mobile.webp";
 import supportBook from "@/assets/media/support_book.webp"; 
+import { CONTACT, SOCIALS } from "@/lib/links";
+import { GoldDust, SparkleField } from "@/components/ui/Twinkle";
 
 // ==========================================
 // CUSTOM SVG ICONS FOR SOCIAL MEDIA (Bypasses Lucide Brand Restrictions)
@@ -213,13 +215,30 @@ export default function Support() {
   const [openShipping, setOpenShipping] = useState<number | null>(null);
   const [openAuthor, setOpenAuthor] = useState<number | null>(null);
   const [openInstitutional, setOpenInstitutional] =useState<number | null>(null);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formNote, setFormNote] = useState("");
+
+  // The form opens the visitor's email app with everything filled in,
+  // addressed to the official email. No server or paid service needed.
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setFormNote("Please add your name, email and message.");
+      return;
+    }
+    const subject = form.subject.trim() || `Message from ${form.name}`;
+    const body = `${form.message}\n\n— ${form.name}\n${form.email}`;
+    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setFormNote("Opening your email app…");
+  };
+  const update = (key) => (e) => { setForm({ ...form, [key]: e.target.value }); setFormNote(""); };
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
-    <section id="support" className="relative w-full min-h-screen bg-[#050403] overflow-hidden pt-10 pb-0 font-sans">
+    <section id="support" className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-10 pb-16 md:pb-20 lg:pb-[280px] font-sans">
       
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND
@@ -228,13 +247,13 @@ export default function Support() {
         <picture className="absolute inset-0 w-full h-full opacity-35 mix-blend-luminosity [contain:paint]">
           <source media="(min-width: 1024px)" srcSet={supportDesktop.src} />
           <source media="(min-width: 768px)" srcSet={supportTablet.src} />
-          <img src={supportMobile.src} alt="Support Background" className="w-full h-full object-cover object-top" />
+          <img loading="lazy" decoding="async" src={supportMobile.src} alt="Support Background" className="w-full h-full object-cover object-top" />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-[#050403]/20 via-[#050403]/90 via-45% to-[#050403]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050403]/95 via-[#050403]/60 to-[#050403]/90" />
       </div>
 
-      <div className="relative z-10 max-w-[1450px] mx-auto px-6 lg:px-10">
+      <div className="relative z-10 max-w-[1450px] mx-auto px-5 md:px-10 lg:px-10">
         
         {/* ==========================================
             HERO TEXT & STATS
@@ -250,16 +269,16 @@ export default function Support() {
               </p>
             </div>
 
-            <h1 className="text-[#F5F2EB] leading-[1.05] text-[44px] md:text-[56px] lg:text-[68px] font-normal" style={{ fontFamily: "var(--font-playfair), serif" }}>
+            <h1 className="text-[#F5F2EB] leading-[1.08] text-[40px] md:text-[56px] lg:text-[68px] font-normal" style={{ fontFamily: "var(--font-playfair), serif" }}>
               Questions <br />
               <span className="italic text-[#D4AF37]">We Often Hear</span>
             </h1>
 
-            <p className="mt-6 text-[#A0A0A0] leading-relaxed max-w-xl text-[13px] md:text-[14.5px]">
+            <p className="mt-6 text-[#A0A0A0] max-lg:text-[#C4C0B7] leading-relaxed max-w-xl text-[14px] md:text-[14.5px]">
               Find answers to common queries about Vocab Decode, orders, shipping, institutional collaborations and more. If you require further intellectual or academic assistance, our doors are always open.
             </p>
 
-            <div className="mt-15 mb-8 flex flex-wrap gap-8 md:gap-16">
+            <div className="mt-10 lg:mt-15 mb-8 grid grid-cols-2 gap-x-6 gap-y-8 md:flex md:flex-wrap md:gap-16">
               {[
                 { icon: BookOpen, title: "Clarity", sub: "In Every Answer" },
                 { icon: ShieldCheck, title: "Transparency", sub: "In Every Step" },
@@ -284,7 +303,7 @@ export default function Support() {
         ========================================== */}
         <motion.div 
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}
-          className="flex items-center justify-start gap-4 translate-y-[40px] md:translate-y-[60px] lg:translate-y-[150px]"
+          className="flex items-center justify-start gap-4 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[150px]"
         >
           <span className="w-12 h-[1px] bg-[#D4AF37]/40" />
           <p className="uppercase tracking-[0.3em] text-[#D4AF37] text-[10px] font-bold">FREQUENTLY ASKED QUESTIONS</p>
@@ -295,7 +314,7 @@ export default function Support() {
             FOUR-COLUMN BALANCED FAQ ARCHITECTURE
         ========================================== */}
         {/* --- MASTER CONTROL PANEL (FAQ GRID) - Use translate-y here to move up/down --- */}
-        <div className="relative z-20 translate-y-[70px] md:translate-y-[120px] lg:translate-y-[210px] grid grid-cols-1 lg:grid-cols-2 gap-8 items-start pb-20">
+        <div className="relative z-20 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[210px] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-start pb-12 md:pb-14 lg:pb-20">
           
           {/* BOX 1: About Vocab Decode */}
           <div className="space-y-4">
@@ -304,7 +323,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>About Vocab Decode</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {compendiumFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -322,7 +341,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Orders & Shipping</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {shippingFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -340,7 +359,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Author & Collaborations</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {authorFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -358,7 +377,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Institutional Bridge</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {institutionalFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -377,7 +396,7 @@ export default function Support() {
         {/* --- MASTER CONTROL PANEL (BANNER) --- */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 translate-y-[80px] md:translate-y-[100px] md:translate-y-[160px]"
+          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[160px]"
         >
           <div className="flex items-center gap-5">
             <div className="w-12 h-12 rounded-full border border-[#D4AF37]/40 flex items-center justify-center bg-[#D4AF37]/5">
@@ -394,7 +413,7 @@ export default function Support() {
               <Mail className="w-4 h-4 text-[#D4AF37]" />
               <div>
                 <p className="text-[#808080] text-[10px] font-bold tracking-widest uppercase">Email Us</p>
-                <p className="text-[#D4AF37] text-[13px]">divyagautam.author@gmail.com</p>
+                <a href={`mailto:${CONTACT.email}`} className="text-[#D4AF37] text-[13px] break-all hover:underline underline-offset-4">{CONTACT.email}</a>
               </div>
             </div>
             <div className="flex items-center gap-3 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-[#D4AF37]/10 pt-4 sm:pt-0 sm:pl-8">
@@ -412,7 +431,7 @@ export default function Support() {
         ========================================== */}
         <motion.div 
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}
-          className="flex items-center justify-start gap-4 translate-y-[130px] md:translate-y-[160px] lg:translate-y-[190px]"
+          className="flex items-center justify-start gap-4 mt-16 md:mt-20 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[190px]"
         >
           <span className="w-12 h-[1px] bg-[#D4AF37]/40" />
           <p className="uppercase tracking-[0.3em] text-[#D4AF37] text-[10px] font-bold">GET IN TOUCH</p>
@@ -423,38 +442,48 @@ export default function Support() {
             CONTACT FORM & SOCIALS GRID
         ========================================== */}
         {/* --- MASTER CONTROL PANEL (CONTACT GRID) --- */}
-        <div className="relative z-20 translate-y-[160px] md:translate-y-[200px] grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 pb-20">
+        <div id="contact" className="relative z-20 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[200px] grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 pb-12 md:pb-14 lg:pb-20">
           
           {/* LEFT: Send a Message Form */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
             <h3 className="text-[#F5F2EB] text-[28px] mb-8" style={{ fontFamily: "var(--font-playfair), serif" }}>Send a Message</h3>
             
-            <form className="space-y-5">
+            <form className="space-y-4 md:space-y-5" onSubmit={sendMessage} noValidate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <input 
                   type="text" 
+                  aria-label="Your Name"
+                  value={form.name} onChange={update("name")}
                   placeholder="Your Name" 
-                  className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                  className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
                 />
                 <input 
                   type="email" 
+                  aria-label="Your Email"
+                  value={form.email} onChange={update("email")}
                   placeholder="Your Email" 
-                  className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                  className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
                 />
               </div>
               <input 
                 type="text" 
+                aria-label="Subject"
+                value={form.subject} onChange={update("subject")}
                 placeholder="Subject (Academic, Media, Bulk Order, etc.)" 
-                className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666]"
+                className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486]"
               />
               <textarea 
                 rows={6} 
+                aria-label="Your Message"
+                value={form.message} onChange={update("message")}
                 placeholder="Your Message..." 
-                className="w-full bg-[#0A0907]/50 border border-[#D4AF37]/20 rounded-xl px-5 py-4 text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37]/80 focus:bg-[#0A0907]/80 transition-all duration-300 placeholder:text-[#666] resize-none"
+                className="w-full bg-[#120f0a]/90 border border-[#D4AF37]/35 rounded-xl px-5 py-4 text-[16px] md:text-[13px] text-[#F5F2EB] outline-none focus:border-[#D4AF37] focus:bg-[#16120b] focus:shadow-[0_0_18px_rgba(212,175,55,0.15)] transition-all duration-300 placeholder:text-[#9a9486] resize-none"
               />
               
+              {formNote && <p className="text-[12px] text-[#D4AF37]" role="status">{formNote}</p>}
+
               <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
-                <button type="button" className="relative w-full sm:w-auto overflow-hidden bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] hover:from-[#c29f2d] hover:to-[#D4AF37] px-8 py-3.5 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-1 group">
+                <button type="submit" className="relative w-full sm:w-auto overflow-hidden bg-[#D4AF37] bg-[linear-gradient(90deg,#D4AF37_0%,#F3E5AB_100%)] hover:bg-[linear-gradient(90deg,#c29f2d_0%,#D4AF37_100%)] text-black px-8 py-3.5 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-1 group">
                   <span className="relative z-20 flex items-center justify-center gap-2 w-full h-full !text-black font-bold tracking-wide text-[13px]">
                     Send Message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -477,7 +506,7 @@ export default function Support() {
             whileInView={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }} 
             viewport={{ once: true }}
-            className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/20 bg-[#0A0907]/60 backdrop-blur-md p-8 md:p-10 flex flex-col justify-between min-h-[500px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)]"
+            className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/20 bg-[#0A0907]/60 p-6 md:p-10 flex flex-col justify-between min-h-[460px] md:min-h-[500px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)]"
           >
             <div className="relative z-10">
               <h3 className="text-[#F5F2EB] text-[28px] mb-8" style={{ fontFamily: "var(--font-playfair), serif" }}>
@@ -489,31 +518,31 @@ export default function Support() {
                   { 
                     icon: Mail, 
                     title: "Email", 
-                    sub: "divyagautam.author@gmail.com", 
-                    link: "mailto:divyagautam.author@gmail.com" 
+                    sub: CONTACT.email, 
+                    link: `mailto:${CONTACT.email}` 
                   },
                   { 
                     icon: IconLinkedin, 
                     title: "LinkedIn", 
-                    sub: "linkedin.com/in/divya-gautam", 
-                    link: "https://linkedin.com/in/divya-gautam" 
+                    sub: SOCIALS.linkedin.handle, 
+                    link: SOCIALS.linkedin.active ? SOCIALS.linkedin.href : null 
                   },
                   { 
                     icon: IconTwitter, 
                     title: "Twitter", 
-                    sub: "@DivyaGautam_", 
-                    link: "https://twitter.com/DivyaGautam_" 
+                    sub: SOCIALS.twitter.handle, 
+                    link: SOCIALS.twitter.active ? SOCIALS.twitter.href : null 
                   },
                   { 
                     icon: IconInstagram, 
                     title: "Instagram", 
-                    sub: "@divyagautam.author", 
-                    link: "https://instagram.com/divyagautam.author" 
+                    sub: SOCIALS.instagram.handle, 
+                    link: SOCIALS.instagram.active ? SOCIALS.instagram.href : null 
                   },
                   { 
                     icon: MapPin, 
                     title: "Based In", 
-                    sub: "India", 
+                    sub: CONTACT.location, 
                     link: null 
                   }
                 ].map((item, idx) => (
@@ -521,7 +550,7 @@ export default function Support() {
                     <a 
                       key={idx} 
                       href={item.link} 
-                      target="_blank" 
+                      target={item.link.startsWith("mailto:") ? undefined : "_blank"} 
                       rel="noopener noreferrer" 
                       className="flex items-center gap-5 group cursor-pointer transition-transform duration-300 hover:translate-x-1"
                     >
@@ -530,7 +559,7 @@ export default function Support() {
                       </div>
                       <div>
                         <h4 className="text-[#F5F2EB] text-[14px] font-medium mb-0.5">{item.title}</h4>
-                        <p className="text-[#A0A0A0] text-[12px] group-hover:text-[#D4AF37] transition-colors duration-300">{item.sub}</p>
+                        <p className="text-[#A0A0A0] text-[12px] break-all group-hover:text-[#D4AF37] transition-colors duration-300">{item.sub}</p>
                       </div>
                     </a>
                   ) : (
@@ -549,8 +578,8 @@ export default function Support() {
             </div>
 
             {/* SEAMLESS BLENDED GRAPHIC */}
-            <div className="absolute -right-4 -bottom-4 w-[220px] md:w-[260px] pointer-events-none z-0 opacity-80 mix-blend-lighten">
-              <img 
+            <div className="absolute -right-4 -bottom-4 w-[170px] md:w-[260px] pointer-events-none z-0 opacity-60 md:opacity-80 mix-blend-lighten">
+              <img loading="lazy" decoding="async" 
                 src={supportBook.src} 
                 alt="Vocab Decode Book" 
                 className="w-full h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]" 
@@ -567,9 +596,11 @@ export default function Support() {
         ========================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true, amount: 0.3 }}
-          className="w-full rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 translate-y-[200px] md:translate-y-[260px]"
+          className="w-full rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[260px]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#110e0a] to-[#050403] z-0" />
+          <GoldDust count={12} seed={41} rise={34} />
+          <SparkleField stars={[[24, 10, 10, 0.6], [70, 88, 11, 1.9], [20, 82, 8, 3.0]]} />
           
           <div className="relative z-10 px-6 py-10 md:px-12 md:py-14 flex flex-col items-center justify-center text-center min-h-[160px]">
             <div className="flex gap-4 items-start">
@@ -584,7 +615,7 @@ export default function Support() {
                   <span className="w-10 h-[1px] bg-[#D4AF37]/50" />
                 </div>
               </div>
-              <span className="text-[#D4AF37] text-[40px] md:text-[50px] leading-none font-serif pt-10 md:pt-12 opacity-80 self-end">”</span>
+              <span className="hidden sm:block text-[#D4AF37] text-[40px] md:text-[50px] leading-none font-serif pt-10 md:pt-12 opacity-80 self-end">”</span>
             </div>
           </div>
         </motion.div>

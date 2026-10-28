@@ -3,6 +3,12 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import SmartLink from "@/components/ui/SmartLink";
+import { LINKS } from "@/lib/links";
+import SunGlow from "@/components/ui/SunGlow";
+import { Sparkle } from "@/components/ui/Twinkle";
+import { softGlow } from "@/lib/glow";
 
 // ==========================================
 // IMAGE IMPORTS (From src/assets/...)
@@ -15,6 +21,8 @@ import heroBottomTablet from "@/assets/tablet/hero_bottom_tablet.webp";
 import heroTopMobile from "@/assets/mobile/hero_top_mobile.webp";
 import heroBottomMobile from "@/assets/mobile/hero_bottom_mobile.webp";
 import dgLogoGolden from "@/assets/icons/dg_logo_golden.webp";
+import bookCover from "@/assets/media/review_book.webp";
+import bookCollection from "@/assets/media/support_book.webp";
 
 /* ==========================================================
    RESPONSIVE LAYOUT
@@ -26,35 +34,22 @@ import dgLogoGolden from "@/assets/icons/dg_logo_golden.webp";
    Knobs: base = mobile, md: = tablet, lg: = desktop
 ========================================================== */
 
-// Small 4-point twinkling star
-function Sparkle({ className = "", size = 10, delay = 0 }) {
-  return (
-    <motion.svg
-      viewBox="0 0 24 24"
-      width={size}
-      height={size}
-      className={`absolute pointer-events-none ${className}`}
-      initial={{ opacity: 0, scale: 0.4 }}
-      animate={{ opacity: [0, 1, 0], scale: [0.4, 1, 0.4], rotate: [0, 90] }}
-      transition={{ duration: 3.5, repeat: Infinity, delay, ease: "easeInOut" }}
-    >
-      <path
-        d="M12 0 C12.8 7 17 11.2 24 12 C17 12.8 12.8 17 12 24 C11.2 17 7 12.8 0 12 C7 11.2 11.2 7 12 0Z"
-        fill="#F5D77A"
-        style={{ filter: "drop-shadow(0 0 4px rgba(212,175,55,0.9))" }}
-      />
-    </motion.svg>
-  );
+// Golden dust particles, animated by CSS on the GPU (smooth, no lag).
+// Positions are generated once, so the page stays fast and stable.
+function makeDust(count, seed, sizeMax, drift) {
+  let x = seed;
+  const rnd = () => ((x = (x * 9301 + 49297) % 233280) / 233280);
+  return Array.from({ length: count }, () => ({
+    size: rnd() * sizeMax + 1,
+    left: rnd() * 100,
+    top: rnd() * 100,
+    dx: (rnd() - 0.5) * drift,
+    duration: 6 + rnd() * 6,
+    delay: -rnd() * 10,
+  }));
 }
-
-// Book spines for the "Book Collection" shelf
-const shelfBooks = [
-  { h: 58, w: 14 },
-  { h: 70, w: 16 },
-  { h: 84, w: 24, title: true },
-  { h: 66, w: 15 },
-  { h: 52, w: 13 },
-];
+const heroDust = makeDust(15, 7, 3, 40);
+const legacyDust = makeDust(20, 23, 2, 24);
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -64,7 +59,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-20 md:pb-24 lg:pb-[150px] font-sans">
+    <section id="home" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-20 md:pb-24 lg:pb-[150px] font-sans">
       
       {/* ===========================
           PREMIUM BACKGROUND & EFFECTS
@@ -99,24 +94,26 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/60 to-transparent" />
         
         {/* Gold Ambient Glows */}
-        <div className="absolute -left-40 top-20 h-[700px] w-[700px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 65%)' }} />
-        <div className="absolute right-[-200px] top-[-120px] h-[650px] w-[650px] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 65%)' }} />
+        <div className="absolute -left-40 top-20 h-[700px] w-[700px] pointer-events-none z-0" style={{ background: softGlow(0.1) }} />
+        <div className="absolute right-[-200px] top-[-120px] h-[650px] w-[650px] pointer-events-none z-0" style={{ background: softGlow(0.1) }} />
 
         {/* Floating Golden Dust */}
         {isMounted && (
           <div className="absolute inset-0 overflow-hidden">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <motion.span
+            {heroDust.map((d, i) => (
+              <span
                 key={i}
-                className="absolute rounded-full bg-[#D4AF37] blur-[0.4px] shadow-[0_0_14px_rgba(212,175,55,.9)]"
+                className="absolute rounded-full bg-[#D4AF37] blur-[0.4px] shadow-[0_0_14px_rgba(212,175,55,.9)] will-change-transform"
                 style={{
-                  width: Math.random() * 3 + 1,
-                  height: Math.random() * 3 + 1,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  width: d.size,
+                  height: d.size,
+                  left: `${d.left}%`,
+                  top: `${d.top}%`,
+                  opacity: 0,
+                  "--dx": `${d.dx}px`,
+                  "--dy": "-80px",
+                  animation: `dg-dust ${d.duration}s ease-in-out ${d.delay}s infinite`,
                 }}
-                animate={{ y: [0, -80, 0], x: [0, 20, -15, 0], scale: [0.4, 1.2, .8], opacity: [0, .9, 0] }}
-                transition={{ duration: 5 + Math.random() * 5, repeat: Infinity, delay: Math.random() * 3, ease: "linear" }}
               />
             ))}
           </div>
@@ -149,14 +146,12 @@ export default function Hero() {
           >
             The discipline of <br /> language, <br />
             the{" "}
-            <motion.span
-              className="italic pr-1 text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_18px_rgba(212,175,55,0.35)]"
+            <span
+              className="italic pr-1 text-transparent bg-clip-text bg-[length:200%_auto] drop-shadow-[0_0_18px_rgba(212,175,55,0.35)] animate-[dg-shine_5s_linear_infinite]"
               style={{ backgroundImage: "linear-gradient(90deg, #C9A032 0%, #F7E08E 25%, #D4AF37 50%, #F7E08E 75%, #C9A032 100%)" }}
-              animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             >
               ambition
-            </motion.span>{" "}
+            </span>{" "}
             <br />
             of service.
           </h1>
@@ -174,12 +169,12 @@ export default function Hero() {
 
           {/* Buttons Control — Mobile: both buttons equal width in one row */}
           <div className="mt-8 md:mt-9 lg:mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4 lg:gap-5 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[-20px] lg:translate-y-[-210px]">
-            <button className="text-center rounded-sm bg-[#D4AF37] px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-black transition-all hover:bg-[#f0cf67] hover:shadow-[0_0_35px_rgba(212,175,55,.45)] max-lg:shadow-[0_0_24px_rgba(212,175,55,.35)]">
+            <Link href={LINKS.about.href} className="text-center rounded-sm bg-[#D4AF37] px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-black transition-all hover:bg-[#f0cf67] hover:shadow-[0_0_35px_rgba(212,175,55,.45)] max-lg:shadow-[0_0_24px_rgba(212,175,55,.35)]">
               Explore Full Work
-            </button>
-            <button className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/40 max-lg:backdrop-blur-sm px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
+            </Link>
+            <SmartLink link={LINKS.profile} className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/60 px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
               View Full Profile
-            </button>
+            </SmartLink>
           </div>
         </motion.div>
 
@@ -187,7 +182,7 @@ export default function Hero() {
             Mobile: full-width on top | Tablet: right side | Desktop: same as before */}
         <motion.div 
           initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
           transition={{ duration: 1.2, delay: 0.3 }}
           className="relative lg:absolute order-first md:order-none max-md:-mx-5 max-md:w-[calc(100%+2.5rem)] md:w-[50%] md:-ml-[6%] lg:ml-0 lg:w-auto lg:flex-1 flex justify-center md:justify-end lg:justify-start lg:right-12 lg:bottom-[10%] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[50px] lg:translate-y-[-380px]"
         >
@@ -201,20 +196,15 @@ export default function Hero() {
             />
 
             {/* Mobile/Tablet: soft pulsing golden glow over the portrait */}
-            <motion.div
-              className="absolute inset-0 z-10 pointer-events-none lg:hidden"
-              style={{ background: "radial-gradient(ellipse 65% 45% at 56% 42%, rgba(212,175,55,0.16) 0%, rgba(212,175,55,0) 70%)", mixBlendMode: "screen" }}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            <div
+              className="absolute inset-0 z-10 pointer-events-none lg:hidden animate-[dg-breathe_8s_ease-in-out_infinite]"
+              style={{ background: softGlow(0.2, "ellipse 70% 55% at 56% 40%", "255,214,140"), mixBlendMode: "soft-light" }}
             />
 
             {/* Mobile/Tablet: light sweep passing across the portrait */}
-            <motion.div
-              className="absolute inset-y-0 left-0 w-1/3 z-10 pointer-events-none lg:hidden"
+            <div
+              className="absolute inset-y-0 left-0 w-1/3 z-10 pointer-events-none lg:hidden will-change-transform animate-[dg-sweep_13s_ease-in-out_infinite]"
               style={{ background: "linear-gradient(100deg, transparent 0%, rgba(255,230,160,0.12) 50%, transparent 100%)" }}
-              initial={{ x: "-120%" }}
-              animate={{ x: "360%" }}
-              transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
             />
 
             {/* Mobile fade: all four edges melt into the background */}
@@ -233,18 +223,12 @@ export default function Hero() {
               style={{ background: "linear-gradient(to top, #050403 0%, transparent 35%), linear-gradient(to bottom, #050403 0%, transparent 35%), linear-gradient(to right, #050403 0%, transparent 45%)" }}
             />
 
-            {/* Mobile/Tablet: golden corner frame */}
-            <div className="absolute top-5 left-5 h-9 w-9 border-t border-l border-[#D4AF37]/70 z-20 pointer-events-none lg:hidden" />
-            <div className="absolute top-5 right-5 h-9 w-9 border-t border-r border-[#D4AF37]/70 z-20 pointer-events-none lg:hidden" />
 
             {/* Mobile/Tablet: twinkling sparkles */}
             {isMounted && (
               <div className="absolute inset-0 z-20 pointer-events-none lg:hidden">
-                <Sparkle className="top-[14%] left-[14%]" size={12} delay={0} />
-                <Sparkle className="top-[22%] right-[16%]" size={9} delay={1.2} />
-                <Sparkle className="top-[44%] left-[8%]" size={8} delay={2.1} />
-                <Sparkle className="top-[36%] right-[9%]" size={11} delay={0.6} />
-                <Sparkle className="top-[58%] right-[24%]" size={7} delay={1.8} />
+                <Sparkle className="top-[16%] left-[12%]" size={10} delay={0} />
+                <Sparkle className="top-[30%] right-[10%]" size={8} delay={2.2} />
               </div>
             )}
           </div>
@@ -265,25 +249,19 @@ export default function Hero() {
         {/* Localized Golden Dust Particles */}
         <div className="absolute inset-0 overflow-hidden flex justify-center items-center pointer-events-none">
           <div className="relative w-full max-w-[1000px] h-[300px]">
-            {isMounted && Array.from({ length: 20 }).map((_, i) => (
-              <motion.span
+            {isMounted && legacyDust.map((d, i) => (
+              <span
                 key={`legacy-dust-${i}`}
-                className="absolute rounded-full bg-[#D4AF37] shadow-[0_0_8px_1px_#D4AF37]"
+                className="absolute rounded-full bg-[#D4AF37] shadow-[0_0_8px_1px_#D4AF37] will-change-transform"
                 style={{
-                  width: Math.random() * 2 + 1,
-                  height: Math.random() * 2 + 1,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  x: [0, (Math.random() - 0.5) * 20, 0],
-                  opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                  width: d.size,
+                  height: d.size,
+                  left: `${d.left}%`,
+                  top: `${d.top}%`,
+                  opacity: 0,
+                  "--dx": `${d.dx}px`,
+                  "--dy": "-30px",
+                  animation: `dg-dust ${d.duration - 2}s ease-in-out ${d.delay}s infinite`,
                 }}
               />
             ))}
@@ -300,8 +278,8 @@ export default function Hero() {
 
             {/* DG Emblem Integration (Pure Core Graphic) */}
             <div className="relative shrink-0 flex justify-center items-center h-[130px] w-[130px] md:h-[180px] md:w-[180px] lg:h-[300px] lg:w-[300px] translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px]">
-              {/* Subtle Core Radiance */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[150%] w-[150%] pointer-events-none z-0" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 50%)' }}></div>
+              {/* Sun-like golden aura (soft halo + slowly turning light rays) */}
+              <SunGlow className="h-[230%] w-[230%] z-0" intensity={0.5} />
               
               <div className="relative h-28 w-28 md:h-40 md:w-40 lg:h-120 lg:w-120 flex items-center justify-center">
                 <img 
@@ -311,11 +289,13 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Mobile/Tablet: sparkles around the emblem */}
+              {/* Twinkling stars around the emblem */}
               {isMounted && (
-                <div className="absolute inset-0 pointer-events-none lg:hidden">
-                  <Sparkle className="-top-1 right-1" size={11} delay={0.4} />
-                  <Sparkle className="bottom-3 -left-2" size={8} delay={1.6} />
+                <div className="absolute inset-0 pointer-events-none">
+                  <Sparkle className="top-[2%] right-[6%]" size={13} delay={0.4} />
+                  <Sparkle className="bottom-[14%] left-[2%]" size={10} delay={1.9} />
+                  <Sparkle className="top-[22%] -left-[8%] hidden md:block" size={8} delay={3.1} />
+                  <Sparkle className="bottom-[4%] right-[14%] hidden md:block" size={9} delay={2.6} />
                 </div>
               )}
             </div>
@@ -373,22 +353,20 @@ export default function Hero() {
         <div className="w-full p-0 lg:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-10">
           
           {/* Card 1: Literary Showcase */}
-          <div className="relative flex flex-col pb-6 md:pb-0 pr-4 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pb-6 md:pb-0 pr-4 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Literary Showcase</h4>
             <div className="flex gap-5 items-start">
 
-              {/* Designed book cover (replaces the empty placeholder) */}
-              <div className="relative h-28 w-20 flex-shrink-0 rounded-[3px] rounded-r-md overflow-hidden border border-[#D4AF37]/40 bg-gradient-to-br from-[#2b200e] via-[#16110a] to-[#0b0906] shadow-[6px_8px_18px_rgba(0,0,0,0.65),0_0_22px_rgba(212,175,55,0.15)]">
-                <span className="absolute inset-y-0 left-0 w-[7px] bg-gradient-to-r from-black/60 via-[#D4AF37]/25 to-transparent" />
-                <span className="absolute top-[6px] bottom-[6px] left-[11px] right-[6px] border border-[#D4AF37]/30 rounded-[2px]" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center pl-[5px] text-center">
-                  <span className="text-[5px] tracking-[0.25em] text-[#D4AF37]/70 uppercase">DG Insight</span>
-                  <span className="mt-1.5 font-serif italic text-[13px] leading-[1.05] text-[#F3D98A]">Vocab<br />Decode</span>
-                  <span className="mt-1.5 h-1 w-1 rotate-45 bg-[#D4AF37]" />
-                  <span className="mt-1.5 text-[5px] tracking-[0.3em] text-[#D4AF37]/60 uppercase">Divya Gautam</span>
-                </div>
-              </div>
+              {/* Book cover — the real Vocab Decode cover image */}
+              <SmartLink link={LINKS.vocabDecode} ariaLabel="Vocab Decode" className="group/cover relative h-28 w-20 flex-shrink-0 overflow-hidden rounded-[3px] rounded-r-md border border-[#D4AF37]/40 bg-black shadow-[6px_8px_18px_rgba(0,0,0,0.65),0_0_22px_rgba(212,175,55,0.15)]">
+                <img
+                  src={bookCover.src}
+                  alt="Vocab Decode book cover"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full scale-[1.35] object-cover object-[38%_50%] transition-transform duration-700 group-hover/cover:scale-[1.42]"
+                />
+              </SmartLink>
 
               <div className="flex flex-col">
                 <h3 className="font-serif italic tracking-wide text-[#F5F2EB] text-[20px] md:text-[22px] lg:text-[24px] translate-x-[0px] translate-y-[0px]">Vocab Decode</h3>
@@ -396,15 +374,15 @@ export default function Hero() {
                 <p className="mt-2 leading-relaxed text-[#888] max-lg:text-[#ABA69C] text-[12px] md:text-[12px] lg:text-[13px] translate-x-[0px] translate-y-[0px]">
                   A meticulous lexical compendium designed to demystify etymology.
                 </p>
-                <button className="uppercase tracking-wider mt-4 flex items-center hover:text-white transition-colors w-fit text-[#D4AF37] text-[11px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px]">
+                <Link href={LINKS.books.href} className="uppercase tracking-wider mt-4 flex items-center hover:text-white transition-colors w-fit text-[#D4AF37] text-[11px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px]">
                   Explore the Book <span className="ml-1">→</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
 
           {/* Card 2: Academic Grid */}
-          <div className="relative flex flex-col pb-6 md:pb-0 px-2 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pb-6 md:pb-0 px-2 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-3 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Academic Grid</h4>
             <div className="flex items-baseline gap-2 mb-4 translate-x-[0px] translate-y-[0px]">
@@ -429,36 +407,21 @@ export default function Hero() {
           </div>
 
           {/* Card 3: Flagship Publication — full width on tablet */}
-          <div className="relative flex flex-col pl-2 md:col-span-2 lg:col-span-1 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pl-2 md:col-span-2 lg:col-span-1 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Flagship Publication</h4>
 
-            {/* Designed book shelf (replaces the empty placeholder) */}
-            <div className="h-28 w-full bg-black/40 border border-[#D4AF37]/20 rounded relative overflow-hidden flex items-end justify-center gap-[5px] pb-[10px] translate-x-[0px] translate-y-[0px]">
-              <span className="absolute top-2.5 left-3 z-10 uppercase tracking-widest text-[#D4AF37]/60 text-[9px] md:text-[10px] lg:text-[11px]">Book Collection</span>
-
-              {/* Warm glow behind the books */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-20 w-2/3 pointer-events-none" style={{ background: "radial-gradient(ellipse at bottom, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0) 70%)" }} />
-
-              {shelfBooks.map((b, i) => (
-                <div
-                  key={`shelf-book-${i}`}
-                  style={{ height: b.h, width: b.w }}
-                  className="relative rounded-t-[2px] border border-[#D4AF37]/30 bg-gradient-to-b from-[#3b2b13] to-[#17110a] shadow-[0_0_10px_rgba(212,175,55,0.12)]"
-                >
-                  <span className="absolute top-[6px] left-[2px] right-[2px] h-px bg-[#D4AF37]/60" />
-                  <span className="absolute bottom-[6px] left-[2px] right-[2px] h-px bg-[#D4AF37]/60" />
-                  {b.title && (
-                    <span className="absolute inset-0 flex items-center justify-center text-[6.5px] tracking-[0.2em] text-[#F3D98A] uppercase [writing-mode:vertical-rl] rotate-180">
-                      Vocab Decode
-                    </span>
-                  )}
-                </div>
-              ))}
-
-              {/* Golden shelf line */}
-              <span className="absolute bottom-[8px] left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
-            </div>
+            {/* Book collection — DG Insight Press image */}
+            <SmartLink link={LINKS.publicationsPage} ariaLabel="Book Collection" className="group/col h-28 w-full bg-black/40 border border-[#D4AF37]/20 rounded relative overflow-hidden flex items-center justify-center translate-x-[0px] translate-y-[0px]">
+              <img
+                src={bookCollection.src}
+                alt="DG Insight Press book collection"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover object-[60%_62%] opacity-80 transition-all duration-700 group-hover/col:scale-105 group-hover/col:opacity-100"
+              />
+              <span className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+              <span className="absolute top-2.5 left-3 z-10 uppercase tracking-widest text-[#D4AF37]/80 text-[9px] md:text-[10px] lg:text-[11px]">Book Collection</span>
+            </SmartLink>
           </div>
 
         </div>

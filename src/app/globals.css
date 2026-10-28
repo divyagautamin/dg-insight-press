@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050403;
+  --foreground: #f5f2eb;
+  --gold: #d4af37;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* FIX: these used to point at Geist fonts that were never loaded,
+     so body text silently fell back to Arial. Now it uses Inter. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Sections linked from the menu stop just below the fixed navbar */
+section[id],
+[id="books"],
+[id="contact"],
+[id="publications"] {
+  scroll-margin-top: 72px;
+}
+
+@media (min-width: 768px) {
+  section[id],
+  [id="books"],
+  [id="contact"],
+  [id="publications"] {
+    scroll-margin-top: 84px;
+  }
+}
+
+/* Gold keyboard focus ring for accessibility */
+:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Remove the grey tap flash on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050403;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#3a2e12, #6d5220);
+  border-radius: 8px;
+}
+
+/* Respect visitors who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Lightweight CSS animations (run on the GPU, not JavaScript) ===== */
+@keyframes dg-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes dg-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+@keyframes dg-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(0.97); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+/* Floating golden dust: drift up and fade in/out */
+@keyframes dg-dust {
+  0% { transform: translate3d(0, 0, 0) scale(0.4); opacity: 0; }
+  35% { opacity: 0.9; }
+  50% { transform: translate3d(var(--dx, 16px), var(--dy, -70px), 0) scale(1.15); }
+  100% { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+}
+/* Gold shimmer travelling across text */
+@keyframes dg-shine {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+/* Light sweep across the portrait */
+@keyframes dg-sweep {
+  0% { transform: translateX(-130%); }
+  30%, 100% { transform: translateX(360%); }
+}
+/* Endless vocabulary strip */
+@keyframes dg-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+/* Twinkling star */
+@keyframes dg-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
 }
