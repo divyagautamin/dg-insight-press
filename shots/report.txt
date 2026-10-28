@@ -1,0 +1,9 @@
+phone /: {"scrollWidth":390,"clientWidth":390,"bad":[]}
+phone /vocab-decode: {"scrollWidth":390,"clientWidth":390,"bad":[]}
+phone /research/etymology-as-a-pedagogical-tool: {"scrollWidth":390,"clientWidth":390,"bad":[]}
+tablet /: {"scrollWidth":820,"clientWidth":820,"bad":[]}
+tablet /vocab-decode: {"scrollWidth":820,"clientWidth":820,"bad":[]}
+tablet /research/etymology-as-a-pedagogical-tool: {"scrollWidth":820,"clientWidth":820,"bad":[]}
+laptop /: {"scrollWidth":1366,"clientWidth":1366,"bad":[]}
+laptop /vocab-decode: {"scrollWidth":1366,"clientWidth":1366,"bad":[]}
+laptop /research/etymology-as-a-pedagogical-tool: {"scrollWidth":1366,"clientWidth":1366,"bad":[]}
