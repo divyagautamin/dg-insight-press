@@ -57,7 +57,7 @@ export default function About() {
           <picture className="absolute inset-0 w-full h-full opacity-70">
             <source media="(min-width: 1024px)" srcSet={aboutTopDesktop.src} />
             <source media="(min-width: 768px)" srcSet={aboutTopTablet.src} />
-            <img
+            <img loading="lazy" decoding="async"
               src={aboutTopMobile.src}
               alt=""
               className="w-full h-full object-contain object-right-bottom lg:object-right md:object-right"
@@ -73,7 +73,7 @@ export default function About() {
           <picture className="absolute inset-0 w-full h-full opacity-70">
             <source media="(min-width: 1024px)" srcSet={aboutBottomDesktop.src} />
             <source media="(min-width: 768px)" srcSet={aboutBottomTablet.src} />
-            <img
+            <img loading="lazy" decoding="async"
               src={aboutBottomMobile.src}
               alt=""
               className="w-full h-full object-contain object-right-top lg:object-right md:object-right"
@@ -135,7 +135,7 @@ export default function About() {
 
       {/* ==========================================
           DYNAMIC VOCABULARY STRIP (THE BRIDGE)
-          Solid background instead of backdrop-blur — the old version ran
+          Solid background instead of — the old version ran
           a real-time blur filter every frame, forever, since the marquee
           animates infinitely underneath it. That was the main lag source.
           The animation now also pauses when scrolled out of view.
@@ -231,15 +231,15 @@ export default function About() {
 
         {/* ==========================================
             CTA BOX — one blur layer instead of three
-            (kept backdrop-blur-md on the box itself for the glass look,
-            dropped backdrop-blur-sm on the button and reduced glow blur)
+            (kept on the box itself for the glass look,
+            dropped on the button and reduced glow blur)
         ========================================== */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="group/box w-full max-w-[1300px] mx-auto translate-y-[0px] md:translate-y-[0px] lg:translate-y-[140px] mt-[60px] md:mt-[80px] lg:mt-0 border border-[#D4AF37]/30 bg-[#110e0a]/80 backdrop-blur-md isolate [contain:paint] p-[30px] md:p-[40px] lg:p-[50px] flex flex-col md:flex-row items-start md:items-center justify-between gap-[30px] shadow-[0_0_30px_rgba(212,175,55,0.05)] rounded-sm relative overflow-hidden"
+          className="group/box w-full max-w-[1300px] mx-auto translate-y-[0px] md:translate-y-[0px] lg:translate-y-[140px] mt-[60px] md:mt-[80px] lg:mt-0 border border-[#D4AF37]/30 bg-[#110e0a]/80 isolate [contain:paint] p-[30px] md:p-[40px] lg:p-[50px] flex flex-col md:flex-row items-start md:items-center justify-between gap-[30px] shadow-[0_0_30px_rgba(212,175,55,0.05)] rounded-sm relative overflow-hidden"
         >
           {/* Bulletproof CTA Glow */}
           <div className="absolute -left-10 -top-10 w-[300px] h-[300px] pointer-events-none z-0" style={{ background: softGlow(0.24) }} />

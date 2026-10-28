@@ -172,7 +172,7 @@ export default function Hero() {
             <Link href={LINKS.about.href} className="text-center rounded-sm bg-[#D4AF37] px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-black transition-all hover:bg-[#f0cf67] hover:shadow-[0_0_35px_rgba(212,175,55,.45)] max-lg:shadow-[0_0_24px_rgba(212,175,55,.35)]">
               Explore Full Work
             </Link>
-            <SmartLink link={LINKS.profile} className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/40 max-lg:backdrop-blur-sm px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
+            <SmartLink link={LINKS.profile} className="text-center rounded-sm border border-[#D4AF37] bg-transparent max-lg:bg-black/60 px-3 sm:px-8 md:px-6 lg:px-8 py-3.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-[#D4AF37] transition-all hover:bg-[#D4AF37]/10">
               View Full Profile
             </SmartLink>
           </div>
@@ -182,7 +182,7 @@ export default function Hero() {
             Mobile: full-width on top | Tablet: right side | Desktop: same as before */}
         <motion.div 
           initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
           transition={{ duration: 1.2, delay: 0.3 }}
           className="relative lg:absolute order-first md:order-none max-md:-mx-5 max-md:w-[calc(100%+2.5rem)] md:w-[50%] md:-ml-[6%] lg:ml-0 lg:w-auto lg:flex-1 flex justify-center md:justify-end lg:justify-start lg:right-12 lg:bottom-[10%] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[50px] lg:translate-y-[-380px]"
         >
@@ -353,7 +353,7 @@ export default function Hero() {
         <div className="w-full p-0 lg:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-10">
           
           {/* Card 1: Literary Showcase */}
-          <div className="relative flex flex-col pb-6 md:pb-0 pr-4 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pb-6 md:pb-0 pr-4 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Literary Showcase</h4>
             <div className="flex gap-5 items-start">
@@ -382,7 +382,7 @@ export default function Hero() {
           </div>
 
           {/* Card 2: Academic Grid */}
-          <div className="relative flex flex-col pb-6 md:pb-0 px-2 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pb-6 md:pb-0 px-2 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-3 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Academic Grid</h4>
             <div className="flex items-baseline gap-2 mb-4 translate-x-[0px] translate-y-[0px]">
@@ -407,7 +407,7 @@ export default function Hero() {
           </div>
 
           {/* Card 3: Flagship Publication — full width on tablet */}
-          <div className="relative flex flex-col pl-2 md:col-span-2 lg:col-span-1 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-white/[0.03] max-lg:backdrop-blur-sm max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
+          <div className="relative flex flex-col pl-2 md:col-span-2 lg:col-span-1 max-lg:p-5 max-lg:rounded-xl max-lg:border max-lg:border-[#D4AF37]/15 max-lg:bg-[#0c0a07]/80 max-lg:shadow-[0_0_30px_rgba(212,175,55,0.06)] translate-x-[0px] translate-y-[0px]">
             <span className="lg:hidden absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
             <h4 className="font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-5 text-[9px] md:text-[10px] lg:text-[11px] translate-x-[0px] translate-y-[0px]">Flagship Publication</h4>
 

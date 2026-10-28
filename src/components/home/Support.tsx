@@ -247,7 +247,7 @@ export default function Support() {
         <picture className="absolute inset-0 w-full h-full opacity-35 mix-blend-luminosity [contain:paint]">
           <source media="(min-width: 1024px)" srcSet={supportDesktop.src} />
           <source media="(min-width: 768px)" srcSet={supportTablet.src} />
-          <img src={supportMobile.src} alt="Support Background" className="w-full h-full object-cover object-top" />
+          <img loading="lazy" decoding="async" src={supportMobile.src} alt="Support Background" className="w-full h-full object-cover object-top" />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-[#050403]/20 via-[#050403]/90 via-45% to-[#050403]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050403]/95 via-[#050403]/60 to-[#050403]/90" />
@@ -323,7 +323,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>About Vocab Decode</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {compendiumFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -341,7 +341,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Orders & Shipping</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {shippingFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -359,7 +359,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Author & Collaborations</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {authorFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -377,7 +377,7 @@ export default function Support() {
               <h3 className="text-[#F5F2EB] text-[20px]" style={{ fontFamily: "var(--font-playfair), serif" }}>Institutional Bridge</h3>
             </div>
             
-            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
+            <div className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-b from-[#0e0c09]/80 to-[#070605]/90 shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden">
               {institutionalFaqs.map((faq, idx) => (
                 <FaqItem 
                   key={idx} q={faq.q} a={faq.a} 
@@ -396,7 +396,7 @@ export default function Support() {
         {/* --- MASTER CONTROL PANEL (BANNER) --- */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[160px]"
+          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[160px]"
         >
           <div className="flex items-center gap-5">
             <div className="w-12 h-12 rounded-full border border-[#D4AF37]/40 flex items-center justify-center bg-[#D4AF37]/5">
@@ -506,7 +506,7 @@ export default function Support() {
             whileInView={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }} 
             viewport={{ once: true }}
-            className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/20 bg-[#0A0907]/60 backdrop-blur-md p-6 md:p-10 flex flex-col justify-between min-h-[460px] md:min-h-[500px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)]"
+            className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/20 bg-[#0A0907]/60 p-6 md:p-10 flex flex-col justify-between min-h-[460px] md:min-h-[500px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)]"
           >
             <div className="relative z-10">
               <h3 className="text-[#F5F2EB] text-[28px] mb-8" style={{ fontFamily: "var(--font-playfair), serif" }}>
@@ -579,7 +579,7 @@ export default function Support() {
 
             {/* SEAMLESS BLENDED GRAPHIC */}
             <div className="absolute -right-4 -bottom-4 w-[170px] md:w-[260px] pointer-events-none z-0 opacity-60 md:opacity-80 mix-blend-lighten">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src={supportBook.src} 
                 alt="Vocab Decode Book" 
                 className="w-full h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]" 

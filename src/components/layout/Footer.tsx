@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { subscribe } from "@/lib/subscribe";
+import { softGlow } from "@/lib/glow";
 import Link from "next/link";
 
 // 1. Lucide React Imports
@@ -84,7 +85,7 @@ export default function PremiumFooter() {
       
       {/* Background Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
-      <div className="absolute -bottom-[100px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#D4AF37] opacity-[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute -bottom-[160px] left-1/2 -translate-x-1/2 w-[900px] h-[420px] pointer-events-none" style={{ background: softGlow(0.06, "ellipse 50% 50% at center") }}></div>
 
       <div className="max-w-[1920px] mx-auto px-6 sm:px-10 lg:px-16 py-5 lg:py-8">
         
@@ -153,7 +154,7 @@ export default function PremiumFooter() {
                 { title: "Global Perspectives", icon: Globe },
                 { title: "Purpose That Drives", icon: Target }
               ].map((box, i) => (
-                <div key={i} className="group rounded border border-[#D4AF37]/15 bg-[#0A0806]/60 backdrop-blur-sm p-2 transition-all duration-300 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/5 cursor-default flex items-center gap-2">
+                <div key={i} className="group rounded border border-[#D4AF37]/15 bg-[#0A0806]/60 p-2 transition-all duration-300 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/5 cursor-default flex items-center gap-2">
                   <box.icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#D4AF37] opacity-80 group-hover:opacity-100 flex-shrink-0" />
                   <h4 className="text-[#E0E0E0] text-[9px] lg:text-[10px] font-medium leading-tight">{box.title}</h4>
                 </div>
@@ -239,8 +240,8 @@ export default function PremiumFooter() {
               </div>
             </div>
 
-            <div className="group relative w-full md:max-w-[420px] lg:max-w-[320px] flex flex-col rounded-r-lg rounded-l-[3px] border-y border-r border-[#D4AF37]/10 border-l-[2px] border-l-[#D4AF37]/70 bg-[#0A0806]/50 p-4 lg:p-5 transition-all duration-500 hover:border-[#D4AF37]/30 hover:bg-[#0A0806]/70 focus-within:border-[#D4AF37]/60 focus-within:bg-[#050403]/95 focus-within:shadow-[0_0_20px_rgba(212,175,55,0.15)] backdrop-blur-md overflow-hidden">
-              <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#D4AF37]/5 blur-3xl transition-all duration-700 group-hover:bg-[#D4AF37]/10 group-focus-within:bg-[#D4AF37]/25"></div>
+            <div className="group relative w-full md:max-w-[420px] lg:max-w-[320px] flex flex-col rounded-r-lg rounded-l-[3px] border-y border-r border-[#D4AF37]/10 border-l-[2px] border-l-[#D4AF37]/70 bg-[#0A0806]/50 p-4 lg:p-5 transition-all duration-500 hover:border-[#D4AF37]/30 hover:bg-[#0A0806]/70 focus-within:border-[#D4AF37]/60 focus-within:bg-[#050403]/95 focus-within:shadow-[0_0_20px_rgba(212,175,55,0.15)] overflow-hidden">
+              <div className="absolute -right-16 -top-16 h-44 w-44 pointer-events-none opacity-60 transition-opacity duration-700 group-hover:opacity-100 group-focus-within:opacity-100" style={{ background: softGlow(0.18) }}></div>
               
               <div className="relative z-10">
                 <h3 className="mb-1 text-[8px] lg:text-[9px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Newsletter</h3>

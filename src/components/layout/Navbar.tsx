@@ -64,7 +64,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-50 w-full border-b border-[#D4AF37]/10 bg-black/70 backdrop-blur-xl">
+      <header className="fixed top-0 left-0 z-50 w-full border-b border-[#D4AF37]/10 bg-black/80 backdrop-blur-md">
         <div className="mx-auto flex h-[68px] md:h-20 max-w-[1440px] items-center justify-between px-5 md:px-8 lg:px-12">
 
           {/* Logo */}
@@ -135,7 +135,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 lg:hidden bg-[#050403]/97 backdrop-blur-xl pt-[68px] md:pt-20"
+            className="fixed inset-0 z-40 lg:hidden bg-[#050403]/[0.97] pt-[68px] md:pt-20"
           >
             {/* Soft golden glow */}
             <div

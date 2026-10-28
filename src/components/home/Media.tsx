@@ -48,7 +48,7 @@ export default function Media() {
         <picture className="absolute inset-0 w-full h-full opacity-60 mix-blend-luminosity [contain:paint]">
           <source media="(min-width: 1024px)" srcSet={mediaDesktop.src} />
           <source media="(min-width: 768px)" srcSet={mediaTablet.src} />
-          <img 
+          <img loading="lazy" decoding="async" 
             src={mediaMobile.src} 
             alt="Media Background" 
             className="w-full h-full object-cover object-top"
@@ -143,7 +143,7 @@ export default function Media() {
         */}
         <div className="relative z-20 mt-8 md:mt-10 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[180px]">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 md:gap-6">
             
             {/* CARD 1 */}
             <motion.div
@@ -151,17 +151,17 @@ export default function Media() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group flex flex-col items-center text-center p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
+              className="group flex flex-col items-center text-center p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
             >
-              <div className="w-16 h-16 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
-                <Newspaper className="w-7 h-7 text-[#D4AF37] stroke-[1.5]" />
+              <div className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 shrink-0 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-3 sm:mb-5 md:mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                <Newspaper className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#D4AF37] stroke-[1.5]" />
               </div>
               <p className="text-[#D4AF37] text-[9px] font-bold tracking-[0.2em] uppercase pb-2">Press Feature</p>
-              <h3 className="text-[24px] text-[#F5F2EB] leading-tight pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Newspaper & <br/> Magazine</h3>
-              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[13px] lg:text-[11.5px] leading-relaxed pb-8 flex-grow">
+              <h3 className="text-[17px] sm:text-[21px] md:text-[24px] text-[#F5F2EB] leading-tight pb-2 md:pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Newspaper & <br/> Magazine</h3>
+              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Articles, features and press coverage in leading national and regional publications.
               </p>
-              <SmartLink link={LINKS.mediaArticles} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-5 py-2.5 lg:py-2 rounded-full text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaArticles} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Articles
                 <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
@@ -173,17 +173,17 @@ export default function Media() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group flex flex-col items-center text-center p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
+              className="group flex flex-col items-center text-center p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
             >
-              <div className="w-16 h-16 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
-                <Mic className="w-7 h-7 text-[#D4AF37] stroke-[1.5]" />
+              <div className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 shrink-0 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-3 sm:mb-5 md:mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                <Mic className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#D4AF37] stroke-[1.5]" />
               </div>
               <p className="text-[#D4AF37] text-[9px] font-bold tracking-[0.2em] uppercase pb-2">Interviews</p>
-              <h3 className="text-[24px] text-[#F5F2EB] leading-tight pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Interviews & <br/> Conversations</h3>
-              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[13px] lg:text-[11.5px] leading-relaxed pb-8 flex-grow">
+              <h3 className="text-[17px] sm:text-[21px] md:text-[24px] text-[#F5F2EB] leading-tight pb-2 md:pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Interviews & <br/> Conversations</h3>
+              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Conversations with platforms that explore ideas on language, education, governance and statecraft.
               </p>
-              <SmartLink link={LINKS.mediaInterviews} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-5 py-2.5 lg:py-2 rounded-full text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaInterviews} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Interviews
                 <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
@@ -195,17 +195,17 @@ export default function Media() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group flex flex-col items-center text-center p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
+              className="group flex flex-col items-center text-center p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
             >
-              <div className="w-16 h-16 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
-                <PlayCircle className="w-7 h-7 text-[#D4AF37] stroke-[1.5]" />
+              <div className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 shrink-0 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-3 sm:mb-5 md:mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                <PlayCircle className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#D4AF37] stroke-[1.5]" />
               </div>
               <p className="text-[#D4AF37] text-[9px] font-bold tracking-[0.2em] uppercase pb-2">Podcasts & Talks</p>
-              <h3 className="text-[24px] text-[#F5F2EB] leading-tight pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Podcasts & <br/> Talks</h3>
-              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[13px] lg:text-[11.5px] leading-relaxed pb-8 flex-grow">
+              <h3 className="text-[17px] sm:text-[21px] md:text-[24px] text-[#F5F2EB] leading-tight pb-2 md:pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Podcasts & <br/> Talks</h3>
+              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Audio conversations and talks that delve into thought leadership and public discourse.
               </p>
-              <SmartLink link={LINKS.mediaPodcasts} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-5 py-2.5 lg:py-2 rounded-full text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaPodcasts} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Episodes
                 <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
@@ -217,17 +217,17 @@ export default function Media() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group flex flex-col items-center text-center p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
+              className="group flex flex-col items-center text-center p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.25)] transition-all duration-500"
             >
-              <div className="w-16 h-16 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
-                <Award className="w-7 h-7 text-[#D4AF37] stroke-[1.5]" />
+              <div className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 shrink-0 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-3 sm:mb-5 md:mb-6 group-hover:bg-[#D4AF37]/10 transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                <Award className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#D4AF37] stroke-[1.5]" />
               </div>
               <p className="text-[#D4AF37] text-[9px] font-bold tracking-[0.2em] uppercase pb-2">Recognitions</p>
-              <h3 className="text-[24px] text-[#F5F2EB] leading-tight pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Honors & <br/> Mentions</h3>
-              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[13px] lg:text-[11.5px] leading-relaxed pb-8 flex-grow">
+              <h3 className="text-[17px] sm:text-[21px] md:text-[24px] text-[#F5F2EB] leading-tight pb-2 md:pb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>Honors & <br/> Mentions</h3>
+              <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Appreciations, invitations and recognitions that celebrate the journey and the work.
               </p>
-              <SmartLink link={LINKS.mediaHonors} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-5 py-2.5 lg:py-2 rounded-full text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaHonors} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Honors
                 <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
@@ -250,7 +250,7 @@ export default function Media() {
           className="w-full rounded-2xl overflow-hidden relative border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)] isolate [contain:paint] transition-all duration-500 mt-12 md:mt-14 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[200px]"
         >
           <picture className="absolute top-0 right-0 bottom-0 w-[60%] md:w-[40%] lg:w-[30%] h-full z-0 [contain:paint]">
-            <img
+            <img loading="lazy" decoding="async"
               src={quoteImage.src}
               alt="Ink and Pen"
               className="w-full h-full object-cover object-center opacity-100"
@@ -290,7 +290,7 @@ export default function Media() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
           /* ARCHITECTURE UPGRADE: Added 'group' and extreme hover glow transitions */
-          className="group w-full rounded-[24px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 p-6 md:p-10 mt-6 md:mt-8 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[240px]"
+          className="group w-full rounded-[24px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.15),inset_0_1px_1px_rgba(212,175,55,0.3)] transition-all duration-500 p-6 md:p-10 mt-6 md:mt-8 lg:mt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[240px]"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             

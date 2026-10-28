@@ -60,7 +60,7 @@ export default function Insights() {
         <picture className="absolute inset-0 w-full h-full opacity-80 mix-blend-luminosity [contain:paint]">
           <source media="(min-width: 1024px)" srcSet={insightTopDesktop.src} />
           <source media="(min-width: 768px)" srcSet={insightTopTablet.src} />
-          <img 
+          <img loading="lazy" decoding="async" 
             src={insightTopMobile.src} 
             alt="Insights Background" 
             className="w-full h-full object-cover object-top"
@@ -149,7 +149,7 @@ export default function Insights() {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8 }}
     viewport={{ once: true, amount: 0.2 }}
-    className="group relative bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 backdrop-blur-md border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.2)] rounded-2xl p-5 md:p-6 isolate [contain:paint] transition-all duration-500 flex flex-col justify-center"
+    className="group relative bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.2)] rounded-2xl p-5 md:p-6 isolate [contain:paint] transition-all duration-500 flex flex-col justify-center"
   >
     {/* Performance-Safe Internal Glow */}
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0" style={{ background: softGlow(0.096, "circle at center") }} />
@@ -157,7 +157,7 @@ export default function Insights() {
     <div className="relative z-10 grid md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-6 md:gap-8 items-center h-full">
       {/* IMAGE: Reduced min-h to make the overall box shorter */}
       <div className="overflow-hidden rounded-xl h-full min-h-[200px] max-md:aspect-[16/10]">
-        <img
+        <img loading="lazy" decoding="async"
           src={zoomInsight.src}
           alt="Language as Architecture"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -211,7 +211,7 @@ export default function Insights() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.08),inset_0_1px_1px_rgba(212,175,55,0.15)] rounded-2xl p-7 isolate [contain:paint] transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
+              className="bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.08),inset_0_1px_1px_rgba(212,175,55,0.15)] rounded-2xl p-7 isolate [contain:paint] transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
             >
               <h4 className="flex items-center gap-3 uppercase tracking-[0.25em] text-[#D4AF37] text-[12px] font-semibold mb-6">
                 <Library className="w-4 h-4" /> Categories
@@ -245,7 +245,7 @@ export default function Insights() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 backdrop-blur-md border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.08),inset_0_1px_1px_rgba(212,175,55,0.15)] rounded-2xl p-7 isolate [contain:paint] transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
+              className="bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 border border-[#D4AF37]/20 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.08),inset_0_1px_1px_rgba(212,175,55,0.15)] rounded-2xl p-7 isolate [contain:paint] transition-all duration-500 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[0px]"
             >
               <h4 className="flex items-center gap-3 uppercase tracking-[0.25em] text-[#D4AF37] text-[12px] font-semibold mb-6">
                 <TrendingUp className="w-4 h-4" /> Trending Topics
@@ -362,14 +362,14 @@ export default function Insights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="group flex flex-col bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 backdrop-blur-md border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 rounded-2xl overflow-hidden isolate [contain:paint] transition-all duration-500 hover:shadow-[0_0_25px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)]"
+                className="group flex flex-col bg-gradient-to-b from-[#110e0a]/70 to-[#050403]/90 border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 rounded-2xl overflow-hidden isolate [contain:paint] transition-all duration-500 hover:shadow-[0_0_25px_rgba(212,175,55,0.1),inset_0_1px_1px_rgba(212,175,55,0.25)]"
               >
                 {/* 
                    IMAGE: 'aspect-square' locks the ratio to exactly 1:1. 
                    'object-cover' perfectly fits the image inside without compressing it.
                 */}
                 <div className="w-full aspect-[16/10] md:aspect-square overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={card.img}
                     alt={card.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -434,7 +434,7 @@ export default function Insights() {
              This prevents the catastrophic zooming effect of 'object-cover', maintaining the image's original proportion.
           */}
           <picture className="absolute top-0 right-0 bottom-0 w-[80%] md:w-[60%] h-full z-0 [contain:paint]">
-            <img
+            <img loading="lazy" decoding="async"
               src={quoteImage.src}
               alt="Ink and Pen"
               className="w-full h-full object-cover object-center opacity-100"

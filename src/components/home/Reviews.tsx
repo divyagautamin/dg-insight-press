@@ -124,7 +124,7 @@ export default function Reviews() {
       className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-12 pb-16 md:pb-20 lg:pb-32 font-sans"
     >
       {/* Background Soft Glow (Blended, no sharp lines) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#D4AF37]/[0.03] blur-[100px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[560px] pointer-events-none" style={{ background: softGlow(0.07, "ellipse 50% 50% at center") }} />
 
       <div className="relative z-10 max-w-[1450px] mx-auto px-5 md:px-8 lg:px-10">
         
@@ -228,7 +228,7 @@ export default function Reviews() {
                   <motion.div
                     whileHover={{ y: -8 }}
                     transition={{ duration: 0.3 }}
-                    className="group flex flex-col justify-between h-full p-5 md:p-6 rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_35px_rgba(212,175,55,0.2),inset_0_1px_1px_rgba(212,175,55,0.4)] transition-all duration-500"
+                    className="group flex flex-col justify-between h-full p-5 md:p-6 rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-b from-[#110e0a]/90 to-[#050403]/95 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_35px_rgba(212,175,55,0.2),inset_0_1px_1px_rgba(212,175,55,0.4)] transition-all duration-500"
                   >
                     <div>
                       {/* Avatar */}
@@ -386,7 +386,7 @@ export default function Reviews() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative z-20 rounded-xl border border-[#D4AF37]/25 bg-[#0A0907]/60 backdrop-blur-xl p-5 md:p-6 lg:p-8 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)]"
+          className="relative z-20 rounded-xl border border-[#D4AF37]/25 bg-[#0A0907]/60 p-5 md:p-6 lg:p-8 mt-8 md:mt-10 lg:mt-0 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[80px] shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-[#D4AF37]/15">
             
