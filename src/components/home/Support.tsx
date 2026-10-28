@@ -238,7 +238,7 @@ export default function Support() {
   }, []);
 
   return (
-    <section id="support" className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-10 pb-16 md:pb-20 lg:pb-[280px] font-sans">
+    <section id="support" className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-14 md:pt-20 lg:pt-10 pb-14 md:pb-20 lg:pb-[280px] font-sans">
       
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND
@@ -396,7 +396,7 @@ export default function Support() {
         {/* --- MASTER CONTROL PANEL (BANNER) --- */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[160px]"
+          className="w-full rounded-[20px] border border-[#D4AF37]/25 bg-gradient-to-r from-[#0a0908]/90 via-[#110e0a]/90 to-[#0a0908]/90 shadow-[inset_0_1px_1px_rgba(212,175,55,0.1)] p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 translate-y-[0px] md:translate-y-[0px] lg:translate-y-[160px]"
         >
           <div className="flex items-center gap-5">
             <div className="w-12 h-12 rounded-full border border-[#D4AF37]/40 flex items-center justify-center bg-[#D4AF37]/5">
@@ -408,7 +408,7 @@ export default function Support() {
             </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-12 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-12 w-full lg:w-auto">
             <div className="flex items-center gap-3 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-[#D4AF37]/10 pt-4 sm:pt-0 sm:pl-8">
               <Mail className="w-4 h-4 text-[#D4AF37]" />
               <div>

@@ -88,7 +88,7 @@ export default function About() {
       {/* ==========================================
           MAIN CONTENT CONTAINER
       ========================================== */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[80px] md:pt-[100px] lg:pt-[150px] pb-[60px] md:pb-[80px] lg:pb-[100px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[64px] md:pt-[90px] lg:pt-[150px] pb-[60px] md:pb-[80px] lg:pb-[100px]">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -173,7 +173,7 @@ export default function About() {
       {/* ==========================================
           BOTTOM CONTENT CONTAINER
       ========================================== */}
-      <div id="books" className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[70px] md:pt-[90px] lg:pt-[100px] pb-[100px] md:pb-[130px] lg:pb-[150px]">
+      <div id="books" className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12 pt-[70px] md:pt-[90px] lg:pt-[100px] pb-[64px] md:pb-[110px] lg:pb-[150px]">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}

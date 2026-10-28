@@ -17,8 +17,8 @@ import journeyTopMobile from "@/assets/mobile/journey_top_mobile.webp";
 // =====================
 import lampJourney from "@/assets/media/lamp_journey.webp";
 import scholarJourney from "@/assets/media/scholar_journey.webp";
-// Temporary fallback for vocabJourney to prevent 500 error
-import vocabJourney from "@/assets/media/scholar_journey.webp"; 
+// Step 03 shows the real Vocab Decode book
+import vocabJourney from "@/assets/media/review_book.webp";
 import fortJourney from "@/assets/media/fort_journey.webp";
 import quoteImage from "@/assets/media/quote.webp";
 
@@ -32,7 +32,7 @@ export default function Journey() {
   return (
     <section
       id="journey"
-      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-10 pb-20 md:pb-24 lg:pb-32 font-sans"
+      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-14 md:pt-20 lg:pt-10 pb-14 md:pb-20 lg:pb-32 font-sans"
     >
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND
@@ -161,7 +161,7 @@ export default function Journey() {
               className="w-full bg-gradient-to-br from-[#110e0a]/90 to-[#050403]/95 border border-[#D4AF37]/25 shadow-[inset_0_1px_1px_rgba(212,175,55,0.15)] hover:border-[#D4AF37]/60 hover:shadow-[0_0_50px_rgba(212,175,55,0.18),inset_0_1px_1px_rgba(212,175,55,0.3)] rounded-2xl flex flex-col md:flex-row overflow-hidden isolate [contain:paint] transition-all duration-500"
             >
               <div className="w-full md:w-[35%] h-[150px] sm:h-[180px] md:h-auto md:min-h-[200px] lg:h-[200px] lg:min-h-0 overflow-hidden">
-                <img loading="lazy" decoding="async" src={vocabJourney.src} alt="Vocab Decode" className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" />
+                <img loading="lazy" decoding="async" src={vocabJourney.src} alt="Vocab Decode" style={{ background: "radial-gradient(circle at 42% 52%, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0.08) 30%, rgba(5,4,3,0) 62%), #0b0906" }} className="w-full h-full object-contain object-center p-2 scale-[1.15] transition-transform duration-700 hover:scale-[1.22]" />
               </div>
               <div className="w-full md:w-[65%] p-5 md:p-6 flex flex-col justify-center">
                 <p className="text-[#D4AF37] text-[10px] lg:text-[9px] font-bold tracking-[0.2em] uppercase pb-1.5">The Authorship</p>

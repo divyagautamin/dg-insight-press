@@ -30,7 +30,7 @@ const paperLink = (i: number) => ({ href: `/research/${researchPapers[i].slug}`,
 
 export default function Research() {
   return (
-    <section id="research" className="relative w-full min-h-screen bg-[#050403] font-sans pb-32">
+    <section id="research" className="relative w-full lg:min-h-screen bg-[#050403] font-sans pb-16 md:pb-20 lg:pb-32">
       
       {/* ==========================================
           PERFORMANCE-OPTIMIZED BACKGROUND ARCHITECTURE
@@ -55,7 +55,7 @@ export default function Research() {
       {/* ==========================================
           MAIN CONTENT CONTAINER
       ========================================== */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10 lg:px-0 pt-20 md:pt-24 lg:pt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[10px] lg:translate-y-[75px]" >
+      <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10 lg:px-10 pt-16 md:pt-20 lg:pt-0 translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[10px] lg:translate-y-[75px]" >
         
         {/* HEADER SECTION */}
         <motion.div 
@@ -356,7 +356,7 @@ export default function Research() {
 
           {/* Premium Pill-Shaped Button */}
           <div className="relative z-10 shrink-0 translate-y-[0px]">
-            <SmartLink link={LINKS.researchArchive} className="group/btn relative flex items-center gap-4 bg-black/40 border border-[#D4AF37]/80 text-[#D4AF37] px-8 py-4 md:px-10 md:py-4 text-[12px] md:text-[14px] font-medium tracking-widest rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] active:scale-95">
+            <SmartLink link={LINKS.researchArchive} className="group/btn relative flex items-center gap-4 bg-black/40 border border-[#D4AF37]/80 text-[#D4AF37] px-8 py-4 md:px-10 md:py-4 text-[11.5px] md:text-[14px] font-medium tracking-[0.12em] md:tracking-widest rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] active:scale-95">
               <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-white">
                 Explore Full Academic Archive
               </span>

@@ -121,7 +121,7 @@ export default function Reviews() {
   return (
     <section
       id="reviews"
-      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-12 pb-16 md:pb-20 lg:pb-32 font-sans"
+      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-14 md:pt-20 lg:pt-12 pb-14 md:pb-20 lg:pb-32 font-sans"
     >
       {/* Background Soft Glow (Blended, no sharp lines) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[560px] pointer-events-none" style={{ background: softGlow(0.07, "ellipse 50% 50% at center") }} />
@@ -323,7 +323,7 @@ export default function Reviews() {
                   quality={100}
                   unoptimized={true}
                   /* ARCHITECTURE FIX: shrink-0 and min-w added to break the grid boundary */
-                  className="relative w-[130px] sm:w-[160px] md:w-[190px] lg:w-[320px] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
+                  className="relative w-[165px] sm:w-[190px] md:w-[210px] lg:w-[320px] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
                 />
               </div>
             </div>
@@ -371,7 +371,7 @@ export default function Reviews() {
                   alt="Signed Edition Stamp"
                   width={400}
                   height={441}
-                  className="w-[105px] sm:w-[130px] md:w-[155px] lg:w-[200px] h-auto object-contain pointer-events-auto"
+                  className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[200px] h-auto object-contain pointer-events-auto"
                 />
               </div>
             </div>
