@@ -303,7 +303,7 @@ export default function Reviews() {
              <div className="absolute inset-0" style={{ background: softGlow(0.07, "ellipse 60% 80% at center") }} />
              {/* Floating golden dust + twinkling stars */}
              <GoldDust count={16} seed={31} rise={40} />
-             <SparkleField stars={[[18, 30, 11, 0.3], [78, 36, 8, 1.7], [22, 64, 9, 2.6], [70, 72, 12, 1.1], [40, 92, 8, 3.2]]} />
+             <SparkleField stars={[[5, 14, 11, 0.3], [94, 18, 8, 1.7], [7, 84, 9, 2.6], [93, 86, 12, 1.1], [50, 97, 8, 3.2]]} />
           </div>
 
           {/* ULTRA-COMPACT GRID: Reduced padding and minimal gaps */}
@@ -323,7 +323,7 @@ export default function Reviews() {
                   quality={100}
                   unoptimized={true}
                   /* ARCHITECTURE FIX: shrink-0 and min-w added to break the grid boundary */
-                  className="relative w-[165px] sm:w-[190px] md:w-[210px] lg:w-[320px] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
+                  className="relative w-[165px] sm:w-[190px] md:w-[210px] lg:w-[320px] max-lg:scale-[1.3] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
                 />
               </div>
             </div>
@@ -371,7 +371,7 @@ export default function Reviews() {
                   alt="Signed Edition Stamp"
                   width={400}
                   height={441}
-                  className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[200px] h-auto object-contain pointer-events-auto"
+                  className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[200px] h-auto object-contain pointer-events-auto max-lg:scale-[1.15]"
                 />
               </div>
             </div>
