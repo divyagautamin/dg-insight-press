@@ -307,10 +307,10 @@ export default function Reviews() {
           </div>
 
           {/* ULTRA-COMPACT GRID: Reduced padding and minimal gaps */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-4 items-center px-5 py-8 md:px-8 md:py-10 lg:py-5">
+          <div className="relative z-10 grid grid-cols-2 lg:grid-cols-[1fr_2fr_1fr] gap-x-4 gap-y-6 lg:gap-4 items-center px-5 py-8 md:px-8 md:py-10 lg:py-5">
             
             {/* Left: Book Image (Forced Massive Size Architecture) */}
-            <div className="flex justify-center order-2 lg:order-1 -my-4 lg:-my-24 pointer-events-none shrink-0">
+            <div className="flex justify-center order-2 lg:order-1 lg:-my-24 pointer-events-none shrink-0">
               <div className="relative group shrink-0">
                 {/* Sun-like aura behind the book */}
                 <SunGlow className="h-[150%] w-[150%]" intensity={0.45} />
@@ -323,13 +323,13 @@ export default function Reviews() {
                   quality={100}
                   unoptimized={true}
                   /* ARCHITECTURE FIX: shrink-0 and min-w added to break the grid boundary */
-                  className="relative w-[140px] sm:w-[160px] md:w-[180px] lg:w-[320px] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
+                  className="relative w-[130px] sm:w-[160px] md:w-[190px] lg:w-[320px] lg:min-w-[320px] !max-w-none shrink-0 h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-700 pointer-events-auto"
                 />
               </div>
             </div>
 
             {/* Middle: Content & CTAs (Compact Typography) */}
-            <div className="text-center order-1 lg:order-2 py-1">
+            <div className="col-span-2 lg:col-span-1 text-center order-1 lg:order-2 py-1">
               <p className="uppercase tracking-[0.25em] md:tracking-[0.35em] text-[#D4AF37] text-[9px] md:text-[10px] font-bold mb-1">
                 LIMITED AVAILABILITY
               </p>
@@ -364,14 +364,14 @@ export default function Reviews() {
             </div>
 
             {/* Right: Wax Stamp (Reduced size) */}
-            <div className="flex justify-center order-3 lg:order-3 -my-6 lg:-my-12 pointer-events-none">
+            <div className="flex justify-center order-3 lg:order-3 lg:-my-12 pointer-events-none">
               <div className="relative">
                 <Image
                   src={stamp}
                   alt="Signed Edition Stamp"
                   width={400}
                   height={441}
-                  className="w-[130px] sm:w-[150px] md:w-[170px] lg:w-[200px] h-auto object-contain pointer-events-auto"
+                  className="w-[105px] sm:w-[130px] md:w-[155px] lg:w-[200px] h-auto object-contain pointer-events-auto"
                 />
               </div>
             </div>
