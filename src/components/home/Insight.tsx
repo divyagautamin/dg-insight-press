@@ -51,7 +51,7 @@ export default function Insights() {
   return (
     <section
       id="insights"
-      className="relative w-full bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-28 pb-20 md:pb-24 lg:pb-32 font-sans"
+      className="relative w-full bg-[#050403] overflow-hidden pt-14 md:pt-20 lg:pt-28 pb-14 md:pb-20 lg:pb-32 font-sans"
     >
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND

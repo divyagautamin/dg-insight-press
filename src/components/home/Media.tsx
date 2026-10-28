@@ -39,7 +39,7 @@ export default function Media() {
   return (
     <section
       id="media"
-      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-20 md:pt-24 lg:pt-10 pb-20 md:pb-24 lg:pb-[340px] font-sans"
+      className="relative w-full lg:min-h-screen bg-[#050403] overflow-hidden pt-14 md:pt-20 lg:pt-10 pb-14 md:pb-20 lg:pb-[340px] font-sans"
     >
       {/* ==========================================
           PERFORMANCE-OPTIMIZED PICTURE BACKGROUND
@@ -161,9 +161,9 @@ export default function Media() {
               <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Articles, features and press coverage in leading national and regional publications.
               </p>
-              <SmartLink link={LINKS.mediaArticles} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaArticles} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full whitespace-nowrap text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Articles
-                <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="hidden sm:block w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
             </motion.div>
 
@@ -183,9 +183,9 @@ export default function Media() {
               <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Conversations with platforms that explore ideas on language, education, governance and statecraft.
               </p>
-              <SmartLink link={LINKS.mediaInterviews} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaInterviews} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full whitespace-nowrap text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Interviews
-                <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="hidden sm:block w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
             </motion.div>
 
@@ -205,9 +205,9 @@ export default function Media() {
               <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Audio conversations and talks that delve into thought leadership and public discourse.
               </p>
-              <SmartLink link={LINKS.mediaPodcasts} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaPodcasts} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full whitespace-nowrap text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Episodes
-                <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="hidden sm:block w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
             </motion.div>
 
@@ -227,9 +227,9 @@ export default function Media() {
               <p className="text-[#A0A0A0] max-lg:text-[#BDB9B0] text-[12px] md:text-[13px] lg:text-[11.5px] leading-relaxed pb-4 md:pb-8 flex-grow">
                 Appreciations, invitations and recognitions that celebrate the journey and the work.
               </p>
-              <SmartLink link={LINKS.mediaHonors} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
+              <SmartLink link={LINKS.mediaHonors} className="flex items-center gap-2 text-[#D4AF37] border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 px-2 sm:px-5 py-2 lg:py-2 rounded-full whitespace-nowrap text-[10.5px] sm:text-[12px] lg:text-[11px] font-medium transition-all duration-300 w-full justify-center group/btn">
                 View All Honors
-                <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="hidden sm:block w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
               </SmartLink>
             </motion.div>
 

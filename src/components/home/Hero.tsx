@@ -59,7 +59,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-20 md:pb-24 lg:pb-[150px] font-sans">
+    <section id="home" className="relative w-full lg:min-h-[230vh] bg-[#050403] overflow-x-hidden flex flex-col lg:justify-between pt-20 md:pt-32 lg:pt-32 pb-6 md:pb-12 lg:pb-[150px] font-sans">
       
       {/* ===========================
           PREMIUM BACKGROUND & EFFECTS
@@ -135,7 +135,7 @@ export default function Hero() {
           className="relative lg:absolute z-20 lg:z-auto w-full md:w-[56%] lg:w-[55%] flex flex-col -mt-24 sm:-mt-36 md:mt-0 lg:left-12 lg:top-[20%] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[0px] lg:translate-y-[-64px]"
         >
           {/* Subtitle Control */}
-          <h3 className="font-semibold uppercase tracking-[0.18em] md:tracking-[0.25em] lg:tracking-[0.3em] max-lg:leading-[1.9] max-lg:drop-shadow-[0_0_10px_rgba(212,175,55,0.45)] text-[#D4AF37] mb-4 md:mb-6 lg:mb-16 text-[10px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[-20px] lg:translate-y-[-150px]">
+          <h3 className="font-semibold uppercase whitespace-nowrap lg:whitespace-normal tracking-[0.1em] min-[400px]:tracking-[0.14em] md:tracking-[0.2em] lg:tracking-[0.3em] max-lg:leading-[1.9] max-lg:drop-shadow-[0_0_10px_rgba(212,175,55,0.45)] text-[#D4AF37] mb-4 md:mb-6 lg:mb-16 text-[9.5px] min-[400px]:text-[10px] md:text-[11px] lg:text-[12px] translate-x-[0px] translate-y-[0px] md:translate-x-[0px] md:translate-y-[0px] lg:translate-x-[-20px] lg:translate-y-[-150px]">
             AUTHOR • RESEARCHER • ADMINISTRATIVE SCHOLAR
           </h3>
 
